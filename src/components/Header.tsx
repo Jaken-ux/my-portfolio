@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks: { label: string; href: string; external?: boolean }[] = [
-  { label: "Test Page", href: "/nav-v2" },
   { label: "Work", href: "/#work" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

@@ -5,8 +5,8 @@ import FadeIn from "@/components/FadeIn";
 
 const highlights = [
   "13+ years experience",
-  "B2B & Public sector",
-  "Research, IA, Prototyping",
+  "Complex products & B2B systems",
+  "UX strategy & product thinking",
 ];
 
 export default function Home() {
