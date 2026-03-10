@@ -16,9 +16,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = projectContent.find((p) => p.slug === slug);
   if (!project) return {};
+  const ogImage = project.heroImage || project.galleryImages[0]?.src;
   return {
-    title: `${project.title} — Jacob Jansson`,
+    title: project.title,
     description: project.intro,
+    openGraph: {
+      title: `${project.title} — Jacob Jansson`,
+      description: project.intro,
+      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+    },
   };
 }
 
@@ -103,7 +109,7 @@ export default async function ProjectPage({
               rel="noopener noreferrer"
               className="mt-6 inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
             >
-              Play the game &rarr;
+              Play the Prototype &rarr;
             </a>
           )}
 

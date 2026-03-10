@@ -91,7 +91,7 @@ export default function ContactPage() {
             <div className="mt-12 rounded-xl border border-border bg-[#fafafa] px-6 py-5">
               <p className="text-sm leading-relaxed text-muted">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#2a9d5c]" />
-                Currently open to new opportunities &mdash; freelance, contract
+                Currently open to new opportunities &mdash; contract
                 or permanent roles in UX design and product strategy.
               </p>
             </div>
