@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks: { label: string; href: string; external?: boolean }[] = [
@@ -12,6 +13,15 @@ const navLinks: { label: string; href: string; external?: boolean }[] = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const handleHashClick = (e: React.MouseEvent, href: string) => {
+    const hash = href.split("#")[1];
+    if (hash && pathname === "/") {
+      e.preventDefault();
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
@@ -40,6 +50,7 @@ export default function Header() {
               <Link
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleHashClick(e, link.href)}
                 className="text-sm font-medium text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
@@ -95,7 +106,7 @@ export default function Header() {
               <Link
                 key={link.label}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { handleHashClick(e, link.href); setMenuOpen(false); }}
                 className="block py-3 text-sm font-medium text-muted transition-colors hover:text-foreground"
               >
                 {link.label}

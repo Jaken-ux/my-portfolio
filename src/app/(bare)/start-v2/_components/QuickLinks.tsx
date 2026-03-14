@@ -5,14 +5,14 @@ type QuickLink = {
 };
 
 const links: QuickLink[] = [
-  { label: "Price List Export", description: "Download latest dealer price lists", href: "#" },
-  { label: "Husqvarna Leasing", description: "Leasing options and calculator", href: "#" },
-  { label: "Marketing Portal", description: "Campaign assets and materials", href: "#" },
-  { label: "Power Portal", description: "Technical product information", href: "#" },
-  { label: "Service Hub / RMA", description: "Return and repair management", href: "#" },
-  { label: "Husqvarna University", description: "Certifications and e-learning", href: "#" },
-  { label: "Training Portal", description: "Book training sessions", href: "#" },
-  { label: "Fleet Services", description: "Fleet management tools", href: "#" },
+  { label: "Prislisteexport", description: "Ladda ned aktuella återförsäljarlistor", href: "#" },
+  { label: "Husqvarna Leasing", description: "Leasingalternativ och kalkylator", href: "#" },
+  { label: "Marknadsportal", description: "Kampanjmaterial och resurser", href: "#" },
+  { label: "Power Portal", description: "Teknisk produktinformation", href: "#" },
+  { label: "Service Hub / RMA", description: "Retur- och reparationshantering", href: "#" },
+  { label: "Husqvarna University", description: "Certifieringar och e-learning", href: "#" },
+  { label: "Utbildningsportal", description: "Boka utbildningstillfällen", href: "#" },
+  { label: "Fleet Services", description: "Verktyg för fordonsflottan", href: "#" },
 ];
 
 export default function QuickLinks() {
@@ -22,7 +22,7 @@ export default function QuickLinks() {
         id="quicklinks-heading"
         className="text-lg font-semibold text-[#111]"
       >
-        Quick Links
+        Snabblänkar
       </h2>
       <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
         {links.map((link) => (

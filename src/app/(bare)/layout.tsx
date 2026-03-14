@@ -1,7 +1,9 @@
+import PasswordGate from "./PasswordGate";
+
 export default function BareLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <PasswordGate>{children}</PasswordGate>;
 }

@@ -61,34 +61,34 @@ const IconHyperCare = () => (
 
 const groups: ActionGroup[] = [
   {
-    heading: "Orders",
+    heading: "Order",
     actions: [
       {
-        title: "Order Import",
-        description: "Upload and process bulk orders",
+        title: "Orderimport",
+        description: "Ladda upp och behandla bulkorder",
         href: "#",
         icon: <IconUpload />,
       },
       {
-        title: "Product Data Export",
-        description: "Export product data and documentation",
+        title: "Produktdataexport",
+        description: "Exportera produktdata och dokumentation",
         href: "#",
         icon: <IconExport />,
       },
     ],
   },
   {
-    heading: "Products",
+    heading: "Produkter",
     actions: [
       {
-        title: "Product Registration",
-        description: "Register new products to dealer stock",
+        title: "Produktregistrering",
+        description: "Registrera nya produkter i återförsäljarlagret",
         href: "#",
         icon: <IconRegister />,
       },
       {
-        title: "Exploded View",
-        description: "Search a model to view parts breakdown",
+        title: "Sprängskiss",
+        description: "Sök modell för att visa reservdelsuppdelning",
         href: "#exploded-view",
         icon: <IconExploded />,
       },
@@ -98,14 +98,14 @@ const groups: ActionGroup[] = [
     heading: "Support",
     actions: [
       {
-        title: "Web Warranty",
-        description: "Submit or check warranty claims",
+        title: "Webbgaranti",
+        description: "Skicka in eller kontrollera garantiärenden",
         href: "#",
         icon: <IconWarranty />,
       },
       {
         title: "HyperCare",
-        description: "Priority support & escalations",
+        description: "Prioriterad support & eskaleringar",
         href: "#",
         icon: <IconHyperCare />,
       },
@@ -114,42 +114,43 @@ const groups: ActionGroup[] = [
 ];
 
 export default function QuickActions() {
+  const allActions = groups.flatMap((g) =>
+    g.actions.map((a) => ({ ...a, group: g.heading }))
+  );
+
   return (
-    <section aria-labelledby="quick-actions-heading">
+    <section
+      aria-labelledby="quick-actions-heading"
+      className="flex h-full flex-col rounded-2xl border border-[#d0d0d0] bg-white"
+    >
       <h2
         id="quick-actions-heading"
-        className="text-lg font-semibold text-[#111]"
+        className="border-b border-[#e5e5e5] px-5 py-4 text-lg font-semibold text-[#111]"
       >
-        Quick Actions
+        Snabbåtgärder
       </h2>
-      <div className="mt-4 grid gap-6 md:grid-cols-3">
-        {groups.map((group) => (
-          <div key={group.heading}>
-            <h3 className="mb-3 text-[12px] font-semibold uppercase tracking-widest text-[#999]">
-              {group.heading}
-            </h3>
-            <div className="flex flex-col gap-3">
-              {group.actions.map((a) => (
-                <a
-                  key={a.title}
-                  href={a.href}
-                  className="group flex items-start gap-4 rounded-xl border border-[#e5e5e5] bg-white p-4 transition-all hover:border-[#ccc] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5b6abf] focus-visible:ring-offset-2"
-                >
-                  <span className="mt-0.5 shrink-0 rounded-lg bg-[#f5f5f5] p-2.5 text-[#555] transition-colors group-hover:bg-[#eee] group-hover:text-[#111]">
-                    {a.icon}
-                  </span>
-                  <div>
-                    <span className="text-sm font-semibold text-[#111]">
-                      {a.title}
-                    </span>
-                    <span className="mt-0.5 block text-[12px] leading-snug text-[#888]">
-                      {a.description}
-                    </span>
-                  </div>
-                </a>
-              ))}
+      <div className="flex flex-1 flex-col divide-y divide-[#e5e5e5]">
+        {allActions.map((a) => (
+          <a
+            key={a.title}
+            href={a.href}
+            className="group flex items-center gap-3.5 px-5 py-3.5 transition-colors hover:bg-[#fafafa] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#273A60]"
+          >
+            <span className="shrink-0 rounded-lg bg-[#f5f5f5] p-2 text-[#555] transition-colors group-hover:bg-[#eee] group-hover:text-[#111]">
+              {a.icon}
+            </span>
+            <div className="min-w-0 flex-1">
+              <span className="text-sm font-semibold text-[#111]">
+                {a.title}
+              </span>
+              <span className="mt-0.5 block truncate text-[12px] text-[#888]">
+                {a.description}
+              </span>
             </div>
-          </div>
+            <span className="shrink-0 text-sm font-medium text-[#999] group-hover:text-[#273A60]">
+              →
+            </span>
+          </a>
         ))}
       </div>
     </section>

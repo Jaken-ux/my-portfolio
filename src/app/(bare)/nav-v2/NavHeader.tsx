@@ -1,58 +1,32 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect, Fragment } from "react";
-import { husqvarnaNav, minVerksamhetNav, accountNav } from "./navData";
-import MegaPanel from "./MegaPanel";
+import { useState, useRef, useEffect, Fragment } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { accountNav } from "./navData";
 import MobileDrawer from "./MobileDrawer";
-import AiPartsFinderModal from "./AiPartsFinderModal";
 import ProfileSwitcher from "./ProfileSwitcher";
-
-type OpenPanel = "husqvarna" | "min-verksamhet" | null;
+import { husqvarnaNav, minVerksamhetNav } from "./navData";
 
 export default function NavHeader() {
-  const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
-  const [aiModalOpen, setAiModalOpen] = useState(false);
 
-  const handleAction = useCallback((action: string) => {
-    if (action === "ai-parts-finder") {
-      setOpenPanel(null);
-      setAiModalOpen(true);
-    }
-  }, []);
-
-  const husqvarnaTriggerRef = useRef<HTMLButtonElement>(null);
   const accountTriggerRef = useRef<HTMLButtonElement>(null);
   const accountPanelRef = useRef<HTMLDivElement>(null);
-  const verksamhetTriggerRef = useRef<HTMLButtonElement>(null);
-
-  const togglePanel = useCallback((panel: OpenPanel) => {
-    setOpenPanel((prev) => (prev === panel ? null : panel));
-  }, []);
-
-  const closePanel = useCallback(() => {
-    setOpenPanel((prev) => {
-      requestAnimationFrame(() => {
-        if (prev === "husqvarna") husqvarnaTriggerRef.current?.focus();
-        if (prev === "min-verksamhet") verksamhetTriggerRef.current?.focus();
-      });
-      return null;
-    });
-  }, []);
 
   return (
     <header className="relative bg-white">
       {/* ═══ Row 1: Utility bar — compact, subdued ═══ */}
-      <div className="border-b border-[#f0f0f0] bg-[#fafafa]">
+      <div className="border-b border-[#1a2d4d] bg-[#273A60]">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-1.5 md:px-6">
-          {/* Left: Brand — small */}
+          {/* Left: Brand — logo + text */}
           <div className="flex items-center gap-4">
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(true)}
               aria-label="Öppna meny"
-              className="flex h-8 w-8 items-center justify-center rounded-md text-[#777] transition-colors hover:bg-[#eee] md:hidden"
+              className="flex h-8 w-8 items-center justify-center rounded-md text-white/70 transition-colors hover:bg-white/10 md:hidden"
             >
               <svg
                 width="18"
@@ -67,9 +41,18 @@ export default function NavHeader() {
               </svg>
             </button>
 
-            <span className="hidden text-[13px] font-semibold tracking-tight text-[#555] md:block">
-              Husqvarna Dealer Portal
-            </span>
+            <Link href="/start-v2" className="hidden items-center gap-2.5 md:flex">
+              <Image
+                src="/images/Husqvarna-logo.png"
+                alt="Husqvarna"
+                width={28}
+                height={28}
+                className="brightness-0 invert"
+              />
+              <span className="text-[13px] font-semibold tracking-tight text-white/90">
+                Dealer Portal
+              </span>
+            </Link>
           </div>
 
           {/* Right: Profile + icons — small */}
@@ -80,14 +63,15 @@ export default function NavHeader() {
             </div>
 
             {/* Divider */}
-            <div className="hidden h-5 w-px bg-[#e0e0e0] md:block" />
+            <div className="hidden h-5 w-px bg-white/20 md:block" />
 
             {/* Icons — smaller */}
             <div className="flex items-center gap-0.5">
               {/* Search icon mobile */}
               <button
                 aria-label="Sök"
-                className="flex h-8 w-8 items-center justify-center rounded-md text-[#777] transition-colors hover:bg-[#eee] md:hidden"
+                title="Sök"
+                className="flex h-8 w-8 items-center justify-center rounded-md text-white/70 transition-colors hover:bg-white/10 md:hidden"
               >
                 <svg
                   width="16"
@@ -103,18 +87,43 @@ export default function NavHeader() {
                 </svg>
               </button>
 
+              {/* Notifications bell */}
+              <button
+                aria-label="Notifieringar"
+                title="Notifieringar (5)"
+                className="relative flex h-8 w-8 items-center justify-center rounded-md text-white/70 transition-colors hover:bg-white/10"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 14a2 2 0 004 0" />
+                  <path d="M13.73 11c.17-.26.27-.55.27-.86V7a5 5 0 00-10 0v3.14c0 .31.1.6.27.86L5 12h8l.73-1z" />
+                </svg>
+                <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#c44] text-[8px] font-bold text-white">
+                  5
+                </span>
+              </button>
+
               {/* Account dropdown */}
               <div className="relative">
                 <button
                   ref={accountTriggerRef}
                   onClick={() => setAccountOpen((prev) => !prev)}
                   aria-label="Mitt konto"
+                  title="Mitt konto"
                   aria-expanded={accountOpen}
                   aria-haspopup="true"
                   className={`flex h-8 w-8 items-center justify-center rounded-md transition-colors ${
                     accountOpen
-                      ? "bg-[#e8e8e8] text-[#333]"
-                      : "text-[#777] hover:bg-[#eee]"
+                      ? "bg-white/20 text-white"
+                      : "text-white/70 hover:bg-white/10"
                   }`}
                 >
                   <svg
@@ -134,6 +143,7 @@ export default function NavHeader() {
                 {accountOpen && (
                   <AccountDropdown
                     panelRef={accountPanelRef}
+                    triggerRef={accountTriggerRef}
                     onClose={() => {
                       setAccountOpen(false);
                       requestAnimationFrame(() =>
@@ -147,7 +157,8 @@ export default function NavHeader() {
               {/* Cart */}
               <button
                 aria-label="Varukorg"
-                className="relative flex h-8 w-8 items-center justify-center rounded-md text-[#777] transition-colors hover:bg-[#eee]"
+                title="Varukorg (3)"
+                className="relative flex h-8 w-8 items-center justify-center rounded-md text-white/70 transition-colors hover:bg-white/10"
               >
                 <svg
                   width="16"
@@ -172,31 +183,21 @@ export default function NavHeader() {
         </div>
       </div>
 
-      {/* ═══ Row 2: Primary navigation — dominant bar ═══ */}
-      <div className="hidden border-b-2 border-[#ddd] bg-white shadow-sm md:block">
+      {/* ═══ Row 2: Primary navigation — links ═══ */}
+      <div className="hidden border-b border-[#e0e0e0] bg-white shadow-sm md:block">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 md:px-6">
-          {/* Left: Husqvarna domain */}
+          {/* Left: Husqvarna link */}
           <div className="flex items-center">
-            <button
-              ref={husqvarnaTriggerRef}
-              onClick={() => togglePanel("husqvarna")}
-              aria-expanded={openPanel === "husqvarna"}
-              aria-haspopup="true"
-              className={`relative flex items-center gap-2.5 px-5 py-5 text-base transition-colors focus:outline-none ${
-                openPanel === "husqvarna"
-                  ? "text-[#111]"
-                  : "text-[#444] hover:text-[#111]"
-              }`}
+            <Link
+              href="/nav-v2/husqvarna"
+              className="relative flex items-center gap-2.5 px-5 py-5 text-base text-[#444] transition-colors hover:text-[#111] focus:outline-none"
             >
               <span className="font-bold text-[#111]">Husqvarna</span>
-              <span className="text-sm font-medium text-[#999]">Produkter &amp; tjänster</span>
-              <ChevronDown open={openPanel === "husqvarna"} />
-              <span
-                className={`absolute bottom-0 left-5 right-5 h-[3px] rounded-full bg-[#111] transition-opacity motion-reduce:transition-none ${
-                  openPanel === "husqvarna" ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            </button>
+              <span className="text-sm font-medium text-[#999]">Produkter, reservdelar &amp; tjänster</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M4.5 3l3 3-3 3" />
+              </svg>
+            </Link>
           </div>
 
           {/* Center: Search — large & prominent */}
@@ -224,39 +225,21 @@ export default function NavHeader() {
             </div>
           </div>
 
-          {/* Right: Min verksamhet domain */}
+          {/* Right: Min verksamhet link */}
           <div className="flex items-center">
-            <button
-              ref={verksamhetTriggerRef}
-              onClick={() => togglePanel("min-verksamhet")}
-              aria-expanded={openPanel === "min-verksamhet"}
-              aria-haspopup="true"
-              className={`relative flex items-center gap-2.5 px-5 py-5 text-base transition-colors focus:outline-none ${
-                openPanel === "min-verksamhet"
-                  ? "text-[#111]"
-                  : "text-[#444] hover:text-[#111]"
-              }`}
+            <Link
+              href="/nav-v2/min-verksamhet"
+              className="relative flex items-center gap-2.5 px-5 py-5 text-base text-[#444] transition-colors hover:text-[#111] focus:outline-none"
             >
               <span className="font-bold text-[#111]">Min verksamhet</span>
-              <span className="text-sm font-medium text-[#999]">Dashboard, order &amp; verktyg</span>
-              <ChevronDown open={openPanel === "min-verksamhet"} />
-              <span
-                className={`absolute bottom-0 left-5 right-5 h-[3px] rounded-full bg-[#111] transition-opacity motion-reduce:transition-none ${
-                  openPanel === "min-verksamhet" ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            </button>
+              <span className="text-sm font-medium text-[#999]">Dealer Workspace</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M4.5 3l3 3-3 3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Mega panels (desktop) */}
-      <PanelTransition open={openPanel === "husqvarna"}>
-        <MegaPanel section={husqvarnaNav} onClose={closePanel} onAction={handleAction} />
-      </PanelTransition>
-      <PanelTransition open={openPanel === "min-verksamhet"}>
-        <MegaPanel section={minVerksamhetNav} onClose={closePanel} onAction={handleAction} />
-      </PanelTransition>
 
       {/* Mobile drawer */}
       {mobileOpen && (
@@ -265,35 +248,17 @@ export default function NavHeader() {
           onClose={() => setMobileOpen(false)}
         />
       )}
-
-      {/* AI Parts Finder modal */}
-      {aiModalOpen && (
-        <AiPartsFinderModal onClose={() => setAiModalOpen(false)} />
-      )}
     </header>
-  );
-}
-
-function PanelTransition({
-  open,
-  children,
-}: {
-  open: boolean;
-  children: React.ReactNode;
-}) {
-  if (!open) return null;
-  return (
-    <div className="animate-panel-in motion-reduce:animate-none">
-      {children}
-    </div>
   );
 }
 
 function AccountDropdown({
   panelRef,
+  triggerRef,
   onClose,
 }: {
   panelRef: React.RefObject<HTMLDivElement | null>;
+  triggerRef: React.RefObject<HTMLButtonElement | null>;
   onClose: () => void;
 }) {
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -305,7 +270,9 @@ function AccountDropdown({
       if (e.key === "Escape") onClose();
     }
     function onClick(e: MouseEvent) {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (triggerRef.current?.contains(target)) return;
+      if (panelRef.current && !panelRef.current.contains(target)) {
         onClose();
       }
     }
@@ -317,7 +284,7 @@ function AccountDropdown({
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("mousedown", onClick);
     };
-  }, [onClose, panelRef]);
+  }, [onClose, panelRef, triggerRef]);
 
   const lastIndex = accountNav.items.length - 1;
 
@@ -326,7 +293,7 @@ function AccountDropdown({
       ref={panelRef}
       role="menu"
       aria-label="Mitt konto"
-      className="animate-panel-in motion-reduce:animate-none absolute right-0 top-full z-50 mt-2 w-52 rounded-lg border border-[#e5e5e5] bg-white py-2 shadow-lg"
+      className="animate-panel-in motion-reduce:animate-none absolute right-0 top-full z-50 mt-2 w-52 rounded-lg border border-[#d0d0d0] bg-white py-2 shadow-lg"
     >
       <p className="px-4 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-widest text-[#bbb]">
         Mitt konto
@@ -334,7 +301,7 @@ function AccountDropdown({
       {accountNav.items.map((item, i) => (
         <Fragment key={item.label}>
           {i === lastIndex && (
-            <div className="my-1 border-t border-[#f0f0f0]" />
+            <div className="my-1 border-t border-[#e5e5e5]" />
           )}
           <a
             ref={i === 0 ? firstLinkRef : undefined}
@@ -349,24 +316,5 @@ function AccountDropdown({
         </Fragment>
       ))}
     </div>
-  );
-}
-
-function ChevronDown({ open }: { open: boolean }) {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      className={`transition-transform duration-200 motion-reduce:transition-none ${
-        open ? "rotate-180" : ""
-      }`}
-    >
-      <path d="M3 4.5l3 3 3-3" />
-    </svg>
   );
 }

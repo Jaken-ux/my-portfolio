@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { NavSection } from "./navData";
+import { accountNav } from "./navData";
 
 type MobileDrawerProps = {
   sections: NavSection[];
@@ -10,7 +11,6 @@ type MobileDrawerProps = {
 
 export default function MobileDrawer({ sections, onClose }: MobileDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
-  // Default to "min-verksamhet" (dealer context)
   const [activeTab, setActiveTab] = useState<string>(
     sections[1]?.id ?? sections[0].id
   );
@@ -40,6 +40,11 @@ export default function MobileDrawer({ sections, onClose }: MobileDrawerProps) {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [onClose]);
+
+  const contextLabels: Record<string, string> = {
+    husqvarna: "Produkter, reservdelar & tjänster",
+    "min-verksamhet": "Dealer Workspace",
+  };
 
   return (
     <div className="fixed inset-0 z-50 md:hidden">
@@ -79,6 +84,25 @@ export default function MobileDrawer({ sections, onClose }: MobileDrawerProps) {
           </button>
         </div>
 
+        {/* Search bar (mobile) */}
+        <div className="border-b border-[#e5e5e5] px-5 py-3">
+          <div className="relative">
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[#bbb]"
+              width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"
+            >
+              <circle cx="7" cy="7" r="4.5" />
+              <path d="M10.5 10.5L14 14" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Sök produkter, kunder, order..."
+              aria-label="Sök"
+              className="h-9 w-full rounded-lg border border-[#e0e0e0] bg-[#f8f8f8] pl-9 pr-3 text-sm text-[#333] placeholder-[#aaa] transition-colors focus:border-[#999] focus:bg-white focus:outline-none"
+            />
+          </div>
+        </div>
+
         {/* Segmented tabs */}
         <div className="border-b border-[#e5e5e5] px-5 pt-4 pb-0">
           <div className="flex rounded-lg bg-[#f3f3f3] p-1">
@@ -106,9 +130,7 @@ export default function MobileDrawer({ sections, onClose }: MobileDrawerProps) {
         <div className="p-5">
           {/* Section context label */}
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-[#bbb]">
-            {activeSection.id === "husqvarna"
-              ? "Produkter & tjänster"
-              : "Din verksamhet"}
+            {contextLabels[activeSection.id] ?? activeSection.label}
           </p>
 
           {activeSection.groups.map((group) => {
@@ -139,7 +161,7 @@ export default function MobileDrawer({ sections, onClose }: MobileDrawerProps) {
                   </svg>
                 </button>
 
-                {/* Expandable sub-items with transition */}
+                {/* Expandable sub-items */}
                 <div
                   className={`grid transition-[grid-template-rows] duration-200 motion-reduce:transition-none ${
                     isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -168,6 +190,33 @@ export default function MobileDrawer({ sections, onClose }: MobileDrawerProps) {
               </div>
             );
           })}
+        </div>
+
+        {/* Mitt konto section */}
+        <div className="border-t border-[#e5e5e5] px-5 py-4">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#bbb]">
+            {accountNav.label}
+          </p>
+          <ul className="space-y-0.5">
+            {accountNav.items.map((item, i) => {
+              const isLast = i === accountNav.items.length - 1;
+              return (
+                <li key={item.label}>
+                  {isLast && <div className="my-1.5 border-t border-[#e5e5e5]" />}
+                  <a
+                    href={item.href}
+                    className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#f5f5f5] ${
+                      isLast
+                        ? "font-medium text-[#c00]"
+                        : "text-[#555] hover:text-[#111]"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>

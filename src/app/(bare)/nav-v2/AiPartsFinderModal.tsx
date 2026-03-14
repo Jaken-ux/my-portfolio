@@ -79,7 +79,7 @@ export default function AiPartsFinderModal({ onClose }: Props) {
               <h2 className="text-base font-semibold text-[#111]">
                 AI-assisterad reservdelssök
               </h2>
-              <span className="rounded bg-[#eef1ff] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#5b6abf]">
+              <span className="rounded bg-[#e8ecf4] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#273A60]">
                 Preview
               </span>
             </div>

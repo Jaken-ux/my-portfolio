@@ -37,7 +37,7 @@ export default function GlobalSearch() {
         Product Search
       </h2>
 
-      <div className="mt-4 rounded-xl border border-[#e5e5e5] bg-white p-6">
+      <div className="mt-4 rounded-xl border border-[#d0d0d0] bg-white p-6">
         <p className="mb-3 text-[13px] leading-relaxed text-[#777]">
           Search by model, SKU, or serial number. You&apos;ll jump to the
           product page with documents and exploded view.
@@ -71,7 +71,7 @@ export default function GlobalSearch() {
 
           {/* Quick shortcuts dropdown — shown when a single model is confidently matched */}
           {showDropdown && matchedModel && (
-            <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10 rounded-lg border border-[#e5e5e5] bg-white p-4 shadow-lg">
+            <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10 rounded-lg border border-[#d0d0d0] bg-white p-4 shadow-lg">
               <div className="mb-3 flex items-center gap-2">
                 <span className="rounded bg-[#f0f0f0] px-2 py-0.5 text-[11px] font-semibold text-[#555]">
                   Match

@@ -21,45 +21,45 @@ const statusColorMap: Record<StatusColor, string> = {
 
 const widgets: Widget[] = [
   {
-    label: "Pending Orders",
+    label: "Pågående order",
     value: 14,
-    helper: "Since last login",
-    cta: "View list",
+    helper: "Sedan senaste login",
+    cta: "Visa lista",
     statusColor: "amber",
-    trend: { direction: "up", text: "+3 since yesterday" },
+    trend: { direction: "up", text: "+3 sedan igår" },
     href: "#orders?status=pending",
   },
   {
-    label: "Backorders",
+    label: "Restorder",
     value: 6,
-    helper: "3 critical",
-    cta: "View list",
+    helper: "3 kritiska",
+    cta: "Visa lista",
     statusColor: "red",
-    trend: { direction: "up", text: "+1 this week" },
+    trend: { direction: "up", text: "+1 denna vecka" },
     href: "#orders?status=backorder",
   },
   {
-    label: "New Invoices",
+    label: "Nya fakturor",
     value: 8,
-    helper: "Since last login",
-    cta: "View list",
+    helper: "Sedan senaste login",
+    cta: "Visa lista",
     statusColor: "neutral",
     href: "#invoices?status=new",
   },
   {
-    label: "Deliveries This Week",
+    label: "Leveranser denna vecka",
     value: 12,
-    helper: "Next: Tomorrow 08:00",
-    cta: "View list",
+    helper: "Nästa: Imorgon 08:00",
+    cta: "Visa lista",
     statusColor: "green",
-    trend: { direction: "down", text: "-2 vs last week" },
+    trend: { direction: "down", text: "-2 mot förra veckan" },
     href: "#deliveries?period=week",
   },
   {
-    label: "Needs Attention",
+    label: "Att hantera",
     value: 3,
-    helper: "Incl. HyperCare alerts",
-    cta: "Review all",
+    helper: "Inkl. HyperCare-ärenden",
+    cta: "Granska alla",
     statusColor: "red",
     href: "#alerts",
   },
@@ -69,14 +69,14 @@ export default function DashboardWidgets() {
   return (
     <section aria-labelledby="dashboard-heading">
       <h2 id="dashboard-heading" className="sr-only">
-        Dashboard overview
+        Översikt
       </h2>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {widgets.map((w) => (
           <a
             key={w.label}
             href={w.href}
-            className={`group flex flex-col rounded-xl border border-[#e5e5e5] border-l-[3px] bg-white p-5 transition-all hover:border-[#ccc] hover:shadow-md ${statusColorMap[w.statusColor]}`}
+            className={`group flex flex-col rounded-xl border border-[#d0d0d0] border-l-[3px] bg-white p-5 transition-all hover:border-[#ccc] hover:shadow-md ${statusColorMap[w.statusColor]}`}
           >
             <p className="text-[12px] font-semibold uppercase tracking-widest text-[#999]">
               {w.label}
@@ -96,7 +96,7 @@ export default function DashboardWidgets() {
                 {w.trend.direction === "up" ? "↑" : "↓"} {w.trend.text}
               </p>
             )}
-            <span className="mt-3 text-[11px] font-semibold text-[#5b6abf] opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="mt-3 text-[11px] font-semibold text-[#273A60] opacity-0 transition-opacity group-hover:opacity-100">
               {w.cta} →
             </span>
           </a>

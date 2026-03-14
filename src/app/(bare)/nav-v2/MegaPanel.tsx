@@ -225,7 +225,7 @@ function GroupBlock({
             <span className="text-[13px] font-semibold text-[#222]">
               {group.showcase.title}
             </span>
-            <span className="rounded bg-[#eef1ff] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#5b6abf]">
+            <span className="rounded bg-[#e8ecf4] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#273A60]">
               {group.showcase.badge}
             </span>
           </div>

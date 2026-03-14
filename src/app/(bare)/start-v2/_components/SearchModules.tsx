@@ -15,7 +15,7 @@ export default function SearchModules() {
       </h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {/* Spare parts search */}
-        <div className="rounded-xl border border-[#e5e5e5] bg-white p-6">
+        <div className="rounded-xl border border-[#d0d0d0] bg-white p-6">
           <h3 className="text-sm font-semibold text-[#111]">
             Spare Parts Search
           </h3>
@@ -59,7 +59,7 @@ export default function SearchModules() {
               <button className="rounded-lg bg-[#111] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-80">
                 Search spare parts
               </button>
-              <button className="text-[13px] font-medium text-[#5b6abf] underline decoration-[#5b6abf]/30 underline-offset-2 transition-colors hover:text-[#4a58a8]">
+              <button className="text-[13px] font-medium text-[#273A60] underline decoration-[#273A60]/30 underline-offset-2 transition-colors hover:text-[#1a2d4d]">
                 AI-assisted parts finder (Preview)
               </button>
             </div>
@@ -67,7 +67,7 @@ export default function SearchModules() {
         </div>
 
         {/* Price & availability */}
-        <div className="rounded-xl border border-[#e5e5e5] bg-white p-6">
+        <div className="rounded-xl border border-[#d0d0d0] bg-white p-6">
           <h3 className="text-sm font-semibold text-[#111]">
             Price &amp; Availability
           </h3>
