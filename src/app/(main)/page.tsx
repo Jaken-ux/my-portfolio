@@ -34,7 +34,7 @@ export default function Home() {
               View Work
             </Link>
             <a
-              href="/cv.pdf"
+              href="/cv/Jacob_Jansson_CV.pdf"
               download
               className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
             >

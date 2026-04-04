@@ -36,6 +36,95 @@ export type ProjectContent = {
 
 export const projectContent: ProjectContent[] = [
   {
+    slug: "husqvarna-dealer-portal",
+    title: "Husqvarna Dealer Portal",
+    intro:
+      "Redesigning the B2B dealer experience — from vision to interactive prototype using AI-assisted development",
+    role: "UX Designer & Prototyper",
+    timeline: "Ongoing",
+    tags: ["B2B Portal", "UX Design", "AI-Assisted Prototyping", "Next.js"],
+    demoUrl: "https://husqvarna-prototype.vercel.app",
+    quickFacts: [
+      { label: "Client", value: "Husqvarna Group" },
+      { label: "Role", value: "UX Designer & Prototyper" },
+      { label: "Focus", value: "Dealer portal redesign, vision prototype" },
+      { label: "Stack", value: "Next.js, Tailwind, Claude Code" },
+      { label: "Method", value: "AI-assisted vibecoding" },
+    ],
+    problem:
+      "Husqvarna's dealer portal serves thousands of authorized dealers across markets. The existing portal had grown organically over the years, resulting in a fragmented experience that made daily tasks harder than necessary for dealers.",
+    problemPoints: [
+      "Complex navigation structure making it difficult for dealers to find key functions",
+      "Cart and quotation workflows lacked flexibility — no showroom mode for in-store customer presentations",
+      "No unified design system — inconsistent patterns across different sections of the portal",
+      "Limited ability for dealers to manage custom service offerings alongside catalog products",
+    ],
+    approach:
+      "Rather than delivering static mockups, I built a fully interactive vision prototype to demonstrate how the portal could feel and function. The prototype was built using AI-assisted development (vibecoding with Claude Code), allowing rapid iteration on complex interaction patterns.",
+    approachHeading: "Vision Through Prototyping",
+    features: [
+      "Interactive dealer workspace with contracts, programs and campaigns",
+      "Cart system with multi-cart support, quantity controls and availability status",
+      "Quotation system with showroom mode for customer-facing presentations",
+      "Custom service rows — flexible entries for installation, delivery and other services",
+      "Design system with tokens, components, states and interaction patterns",
+      "Campaign landing pages with seasonal promotions",
+    ],
+    approachExtra:
+      "By building the prototype as a real web application rather than in a design tool, stakeholders could interact with actual task flows — adding products to carts, toggling showroom mode, creating quotes — making feedback sessions far more productive than static screen reviews.",
+    decisionsHeading: "Key Design Decisions",
+    decisions: [
+      {
+        title: "Showroom Mode",
+        description:
+          "Dealers often show the portal to customers in-store. Showroom mode hides dealer-confidential pricing (purchase costs, margins) and only displays customer-facing RRP — toggled with a single click in the header.",
+      },
+      {
+        title: "Unified Cart & Quote Patterns",
+        description:
+          "Cart and quotation pages share the same table structure but serve different needs. Quotes support custom service rows, PDF export and per-client naming — features that aren't relevant in the cart context.",
+      },
+      {
+        title: "AI-Assisted Prototyping as UX Method",
+        description:
+          "Using Claude Code to build the prototype allowed me to iterate on complex interaction patterns (drag, toggle, inline edit) at a speed that wouldn't be possible in Figma — while producing something stakeholders could actually use.",
+      },
+      {
+        title: "Design System First",
+        description:
+          "Before building pages, I established design tokens and component patterns. This ensured consistency across all prototype screens and created a reference for future development handoff.",
+      },
+    ],
+    outcome:
+      "The result is a living vision prototype that demonstrates how the dealer portal could work — not as a pixel-perfect spec, but as a functional experience that stakeholders can interact with and respond to.",
+    outcomePoints: [
+      "Interactive prototype deployed and shareable via URL",
+      "Full task flows for cart, quotation and workspace management",
+      "Showroom mode demonstrating dealer vs. customer views",
+      "Design system documentation with tokens, states and components",
+      "Stakeholder-ready demo for alignment and decision-making",
+    ],
+    learnings:
+      "This project demonstrated that AI-assisted prototyping can bridge the gap between design intent and stakeholder understanding — producing artifacts that communicate far more effectively than static deliverables.",
+    learningPoints: [
+      "Interactive prototypes generate better stakeholder feedback than static mockups",
+      "AI-assisted development enables UX designers to build production-quality prototypes independently",
+      "B2B portals require deep understanding of the dealer's dual role — as buyer and as seller",
+      "Design systems are even more valuable when established early in vision work",
+    ],
+    closingStatement:
+      "This project represents how I work today — combining UX design thinking with AI-assisted development to create prototypes that don't just show a vision, but let people experience it.",
+    heroImage: "",
+    galleryImages: [
+      { src: "/images/husqvarna/dashboard.webp", caption: "Dealer portal dashboard — KPI overview, campaign banner and quick actions for daily tasks", group: 0, width: 1369, height: 998 },
+      { src: "/images/husqvarna/min-verksamhet.webp", caption: "Min verksamhet — central hub for orders, invoices, quotes and the new Dealer Workspace", group: 1, width: 1369, height: 1201 },
+      { src: "/images/husqvarna/produktsok.webp", caption: "Product search with multiple identification methods — PNC, serial number, QR scan and AI-assisted lookup", group: 1, width: 1369, height: 998 },
+      { src: "/images/husqvarna/produktlista.webp", caption: "Category browsing with expandable product lists — active and discontinued status clearly indicated", group: 2, width: 1369, height: 856 },
+      { src: "/images/husqvarna/workspace.webp", caption: "Dealer Workspace — full product registry with installation, warranty and service contract status per unit", group: 2, width: 1369, height: 1177 },
+      { src: "/images/husqvarna/betalningar.webp", caption: "Payments & balance — account overview with credit limit, campaign bonus tracking and transaction history", group: 3, width: 1369, height: 926 },
+    ],
+  },
+  {
     slug: "manor-lords",
     title: "Manor Lords",
     intro:

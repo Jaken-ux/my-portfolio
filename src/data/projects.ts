@@ -9,6 +9,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "husqvarna-dealer-portal",
+    title: "Husqvarna Dealer Portal",
+    description: "Redesigning the B2B dealer experience — vision prototype built with AI-assisted development.",
+    image: "/images/husqvarna/logo.png",
+    imageType: "logo",
+    tags: ["B2B Portal", "UX Design", "AI Prototyping"],
+  },
+  {
     slug: "chalmers-website",
     title: "Chalmers Website",
     description: "Restructuring the information architecture for a university website.",

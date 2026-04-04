@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           fill
           className={
             project.imageType === "logo"
-              ? "object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+              ? `object-contain transition-transform duration-500 ease-out group-hover:scale-[1.05] ${project.slug === "husqvarna-dealer-portal" ? "p-10" : "p-6"}`
               : "object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           }
           sizes="(max-width: 640px) 100vw, 50vw"

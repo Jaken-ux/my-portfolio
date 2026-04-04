@@ -7,10 +7,12 @@ import { accountNav } from "./navData";
 import MobileDrawer from "./MobileDrawer";
 import ProfileSwitcher from "./ProfileSwitcher";
 import { husqvarnaNav, minVerksamhetNav } from "./navData";
+import { useShowroom } from "./ShowroomContext";
 
 export default function NavHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const { showroom, setShowroom } = useShowroom();
 
   const accountTriggerRef = useRef<HTMLButtonElement>(null);
   const accountPanelRef = useRef<HTMLDivElement>(null);
@@ -87,6 +89,30 @@ export default function NavHeader() {
                 </svg>
               </button>
 
+              {/* Showroom toggle */}
+              <button
+                onClick={() => setShowroom(!showroom)}
+                title={showroom ? "Showroom-läge aktivt — visar kundpriser" : "Showroom av — visar återförsäljarpriser"}
+                className="hidden items-center gap-2 rounded-md px-2 py-1 text-[12px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white md:flex"
+              >
+                {/* Toggle track */}
+                <span
+                  className={`relative inline-flex h-[18px] w-[32px] shrink-0 items-center rounded-full transition-colors ${
+                    showroom ? "bg-[#2a9d5c]" : "bg-white/25"
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-[14px] w-[14px] rounded-full bg-white shadow transition-transform ${
+                      showroom ? "translate-x-[16px]" : "translate-x-[2px]"
+                    }`}
+                  />
+                </span>
+                Showroom
+              </button>
+
+              {/* Divider */}
+              <span className="hidden h-4 w-px bg-white/20 md:block" />
+
               {/* Notifications bell */}
               <button
                 aria-label="Notifieringar"
@@ -155,7 +181,8 @@ export default function NavHeader() {
               </div>
 
               {/* Cart */}
-              <button
+              <Link
+                href="/nav-v2/varukorg"
                 aria-label="Varukorg"
                 title="Varukorg (3)"
                 className="relative flex h-8 w-8 items-center justify-center rounded-md text-white/70 transition-colors hover:bg-white/10"
@@ -177,7 +204,7 @@ export default function NavHeader() {
                 <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#ff6b00] text-[8px] font-bold text-white">
                   3
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
