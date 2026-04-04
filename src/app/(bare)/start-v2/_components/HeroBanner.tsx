@@ -32,7 +32,7 @@ export default function HeroBanner() {
             Garden-modeller. 1 mars – 31 maj.
           </p>
           <a
-            href="#"
+            href="/nav-v2/kampanj"
             className="mt-3 inline-flex items-center rounded-lg bg-white/90 px-4 py-2 text-[13px] font-medium text-[#222] backdrop-blur transition-colors hover:bg-white"
           >
             Visa detaljer →

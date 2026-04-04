@@ -81,8 +81,9 @@ const forsaljningItems = [
   {
     title: "Offerter",
     desc: "Skapa och hantera kundofferter",
-    href: "#quotes",
-    badge: "5",
+    href: "/nav-v2/offerter",
+    badge: "NY",
+    badgeColor: "orange",
     icon: "M13 2H5a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V6l-4-4zM8 10h4M8 13h2",
   },
   {
@@ -398,12 +399,14 @@ function ModuleCard({
   desc,
   href,
   badge,
+  badgeColor,
   icon,
 }: {
   title: string;
   desc: string;
   href: string;
   badge?: string;
+  badgeColor?: string;
   icon: string;
 }) {
   return (
@@ -418,7 +421,9 @@ function ModuleCard({
           </svg>
         </span>
         {badge && (
-          <span className="rounded-full bg-[#273A60] px-2 py-0.5 text-[10px] font-bold text-white">
+          <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${
+            badgeColor === "orange" ? "bg-[#ff6b00]" : "bg-[#273A60]"
+          }`}>
             {badge}
           </span>
         )}

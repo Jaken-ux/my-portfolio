@@ -16,7 +16,7 @@ export default function PromoBanner() {
           </p>
         </div>
         <a
-          href="#"
+          href="/nav-v2/kampanj"
           className="mt-4 inline-flex shrink-0 items-center rounded-lg border border-[#d0d0e0] bg-white px-5 py-2.5 text-sm font-medium text-[#333] transition-colors hover:bg-[#f5f5f5] md:mt-0"
         >
           View details
