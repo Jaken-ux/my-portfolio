@@ -4,6 +4,7 @@ export type GalleryImage = {
   group?: number;
   width: number;
   height: number;
+  video?: boolean;
 };
 
 export type ProjectContent = {
@@ -28,15 +29,21 @@ export type ProjectContent = {
   learningPoints?: string[];
   closingStatement?: string;
   demoUrl?: string;
+  demoLabel?: string;
+  demoPassword?: string;
   quickFacts?: { label: string; value: string }[];
   heroImage: string;
   heroImageType?: "photo" | "logo";
+  heroVideo?: string;
   galleryImages: GalleryImage[];
 };
 
 export const projectContent: ProjectContent[] = [
   {
     slug: "husqvarna-dealer-portal",
+    demoLabel: "Visit the Prototype",
+    demoPassword: "supersecret",
+    heroVideo: "/images/husqvarna/demo.mp4",
     title: "Husqvarna Dealer Portal",
     intro:
       "Redesigning the B2B dealer experience — from vision to interactive prototype using AI-assisted development",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { projectContent } from "@/content/projects";
 import FadeIn from "@/components/FadeIn";
+import PasswordCopy from "@/components/PasswordCopy";
 
 export function generateStaticParams() {
   return projectContent.map((p) => ({ slug: p.slug }));
@@ -28,21 +29,32 @@ export async function generateMetadata({
   };
 }
 
-function GalleryGrid({ images }: { images: { src: string; caption: string; width: number; height: number }[] }) {
+function GalleryGrid({ images }: { images: { src: string; caption: string; width: number; height: number; video?: boolean }[] }) {
   if (images.length === 0) return null;
   return (
     <FadeIn>
       <div className={`mt-14 grid gap-8 ${images.length > 1 ? "sm:grid-cols-2 items-start" : ""}`}>
         {images.map((img, i) => (
           <figure key={i}>
-            <Image
-              src={img.src}
-              alt={img.caption}
-              width={img.width}
-              height={img.height}
-              className="img-shadow w-full rounded-xl"
-              sizes={images.length === 1 ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
-            />
+            {img.video ? (
+              <video
+                src={img.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="img-shadow w-full rounded-xl"
+              />
+            ) : (
+              <Image
+                src={img.src}
+                alt={img.caption}
+                width={img.width}
+                height={img.height}
+                className="img-shadow w-full rounded-xl"
+                sizes={images.length === 1 ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
+              />
+            )}
             <figcaption className="mt-3 text-xs italic text-muted">
               {img.caption}
             </figcaption>
@@ -103,14 +115,21 @@ export default async function ProjectPage({
 
           {/* Demo link */}
           {project.demoUrl && (
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-            >
-              Play the Prototype &rarr;
-            </a>
+            <div className="mt-6">
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
+              >
+                {project.demoLabel ?? "Play the Prototype"} &rarr;
+              </a>
+              {project.demoPassword && (
+                <div>
+                  <PasswordCopy password={project.demoPassword} />
+                </div>
+              )}
+            </div>
           )}
 
           {/* Quick Facts or Role/Timeline */}
@@ -150,8 +169,21 @@ export default async function ProjectPage({
         </header>
       </FadeIn>
 
-      {/* Hero image */}
-      {project.heroImage && (
+      {/* Hero video (takes precedence over heroImage) */}
+      {project.heroVideo ? (
+        <FadeIn>
+          <div className="img-shadow relative mt-14 aspect-[16/9] overflow-hidden rounded-2xl bg-[#e5e7eb]">
+            <video
+              src={project.heroVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </FadeIn>
+      ) : project.heroImage ? (
         <FadeIn>
           <div className="img-shadow relative mt-14 aspect-[16/9] overflow-hidden rounded-2xl bg-[#e5e7eb]">
             <Image
@@ -164,7 +196,7 @@ export default async function ProjectPage({
             />
           </div>
         </FadeIn>
-      )}
+      ) : null}
 
       {/* The Challenge — side-by-side when group 0 has exactly 1 image, gallery above text when multiple */}
       {hasGroups && galleryGroup(0).length > 1 ? (
