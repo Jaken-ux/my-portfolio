@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { projectContent } from "@/content/projects";
 import FadeIn from "@/components/FadeIn";
-import PasswordCopy from "@/components/PasswordCopy";
 
 export function generateStaticParams() {
   return projectContent.map((p) => ({ slug: p.slug }));
@@ -113,6 +112,13 @@ export default async function ProjectPage({
             {project.intro}
           </p>
 
+          {/* Confidentiality notice */}
+          {project.confidentialityNote && (
+            <p className="mt-5 max-w-2xl border-l-2 border-border pl-4 text-sm italic leading-relaxed text-muted">
+              {project.confidentialityNote}
+            </p>
+          )}
+
           {/* Demo link */}
           {project.demoUrl && (
             <div className="mt-6">
@@ -124,11 +130,6 @@ export default async function ProjectPage({
               >
                 {project.demoLabel ?? "Play the Prototype"} &rarr;
               </a>
-              {project.demoPassword && (
-                <div>
-                  <PasswordCopy password={project.demoPassword} />
-                </div>
-              )}
             </div>
           )}
 
@@ -199,6 +200,8 @@ export default async function ProjectPage({
       ) : null}
 
       {/* The Challenge — side-by-side when group 0 has exactly 1 image, gallery above text when multiple */}
+      {project.problem && (
+      <>
       {hasGroups && galleryGroup(0).length > 1 ? (
         <>
           <GalleryGrid images={galleryGroup(0)} />
@@ -293,8 +296,11 @@ export default async function ProjectPage({
           </section>
         </FadeIn>
       )}
+      </>
+      )}
 
       {/* What I Built / Approach */}
+      {project.approach && (
       <FadeIn>
         <section className="mt-20">
           <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
@@ -327,6 +333,30 @@ export default async function ProjectPage({
           )}
         </section>
       </FadeIn>
+      )}
+
+      {/* Method points (Husqvarna: "Why this method works") */}
+      {project.methodPoints && project.methodPoints.length > 0 && (
+        <FadeIn>
+          <section className="mt-20">
+            <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+              {project.methodPointsHeading ?? "Why this works"}
+            </h2>
+            <div className="mt-6 max-w-2xl space-y-6">
+              {project.methodPoints.map((point, i) => (
+                <div key={i}>
+                  <p className="text-base font-medium italic leading-[1.75] text-foreground">
+                    {point.lead}
+                  </p>
+                  <p className="mt-2 text-base leading-[1.75] text-muted">
+                    {point.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </FadeIn>
+      )}
 
       {/* Gallery group 1 (after What I Built) */}
       {hasGroups ? (
@@ -336,6 +366,7 @@ export default async function ProjectPage({
       ) : null}
 
       {/* Key Decisions — card grid */}
+      {project.decisions && project.decisions.length > 0 && (
       <FadeIn>
         <section className="mt-20">
           <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
@@ -372,6 +403,7 @@ export default async function ProjectPage({
           </div>
         </section>
       </FadeIn>
+      )}
 
       {/* Solution (only if present) */}
       {project.solution && (
@@ -382,6 +414,20 @@ export default async function ProjectPage({
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
               {project.solution}
+            </p>
+          </section>
+        </FadeIn>
+      )}
+
+      {/* Extra section (generic heading + body) */}
+      {project.extraSection && (
+        <FadeIn>
+          <section className="mt-20">
+            <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+              {project.extraSection.heading}
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
+              {project.extraSection.body}
             </p>
           </section>
         </FadeIn>
@@ -399,56 +445,66 @@ export default async function ProjectPage({
         <GalleryGrid images={galleryGroup(3)} />
       )}
 
-      {/* Outcome + Learnings — two-column layout */}
-      <FadeIn>
-        <section className="mt-20 grid gap-12 border-t border-border pt-16 md:grid-cols-2 md:gap-16">
-          {/* Outcome */}
-          <div>
-            <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
-              Outcome
-            </h2>
-            <p className="mt-5 text-base leading-[1.75] text-muted">
-              {project.outcome}
-            </p>
-            {project.outcomePoints && (
-              <ul className="mt-5 space-y-3">
-                {project.outcomePoints.map((point, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 text-base leading-[1.75] text-muted"
-                  >
-                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+      {/* Outcome + Learnings — two-column layout, one-column if only one is present */}
+      {(project.outcome || project.learnings) && (
+        <FadeIn>
+          <section
+            className={`mt-20 grid gap-12 border-t border-border pt-16 ${
+              project.outcome && project.learnings ? "md:grid-cols-2 md:gap-16" : ""
+            }`}
+          >
+            {/* Outcome */}
+            {project.outcome && (
+              <div>
+                <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+                  Outcome
+                </h2>
+                <p className="mt-5 text-base leading-[1.75] text-muted">
+                  {project.outcome}
+                </p>
+                {project.outcomePoints && (
+                  <ul className="mt-5 space-y-3">
+                    {project.outcomePoints.map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-3 text-base leading-[1.75] text-muted"
+                      >
+                        <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             )}
-          </div>
 
-          {/* Learnings */}
-          <div>
-            <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
-              What I Learned
-            </h2>
-            <p className="mt-5 text-base leading-[1.75] text-muted">
-              {project.learnings}
-            </p>
-            {project.learningPoints && (
-              <ul className="mt-5 space-y-3">
-                {project.learningPoints.map((point, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 text-base leading-[1.75] text-muted"
-                  >
-                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+            {/* Learnings */}
+            {project.learnings && (
+              <div>
+                <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+                  What I Learned
+                </h2>
+                <p className="mt-5 text-base leading-[1.75] text-muted">
+                  {project.learnings}
+                </p>
+                {project.learningPoints && (
+                  <ul className="mt-5 space-y-3">
+                    {project.learningPoints.map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-3 text-base leading-[1.75] text-muted"
+                      >
+                        <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             )}
-          </div>
-        </section>
-      </FadeIn>
+          </section>
+        </FadeIn>
+      )}
 
       {/* Closing statement — highlight block */}
       {project.closingStatement && (
@@ -457,6 +513,23 @@ export default async function ProjectPage({
             <p className="max-w-2xl text-xl font-semibold leading-relaxed text-background sm:text-2xl">
               &ldquo;{project.closingStatement}&rdquo;
             </p>
+          </section>
+        </FadeIn>
+      )}
+
+      {/* End CTA (optional) */}
+      {project.endCta && (
+        <FadeIn>
+          <section className="mt-20">
+            <p className="max-w-2xl text-base leading-[1.75] text-muted">
+              {project.endCta.text}
+            </p>
+            <Link
+              href={project.endCta.href}
+              className="mt-5 inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
+            >
+              {project.endCta.linkLabel} &rarr;
+            </Link>
           </section>
         </FadeIn>
       )}
