@@ -143,12 +143,12 @@ export default function AIBuildsPage() {
             <FadeIn key={build.name}>
               <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#e5e7eb]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#1a1a1a]">
                   <Image
                     src={build.image}
                     alt={build.name}
                     fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    className="object-contain p-5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                   <span
