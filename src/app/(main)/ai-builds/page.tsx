@@ -40,6 +40,7 @@ const builds: {
   tags: string[];
   status: Status;
   image: string;
+  liveUrl?: string;
 }[] = [
   {
     name: "Theta Simplified",
@@ -48,6 +49,7 @@ const builds: {
     tags: ["AI Assistant", "Live Data", "Web3"],
     status: "LIVE",
     image: "/images/ai-builds/aibot.webp",
+    liveUrl: "https://thetasimplified.com",
   },
   {
     name: "Fagerhult Sustainability Calculator",
@@ -89,6 +91,22 @@ export default function AIBuildsPage() {
             files. Real interactions, real data, real decisions — in days, not
             weeks.
           </p>
+        </FadeIn>
+        <FadeIn>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a
+              href="mailto:jansson.jacob@gmail.com"
+              className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
+            >
+              Get in touch
+            </a>
+            <a
+              href="#builds"
+              className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
+            >
+              See the builds ↓
+            </a>
+          </div>
         </FadeIn>
       </section>
 
@@ -132,16 +150,16 @@ export default function AIBuildsPage() {
       </section>
 
       {/* Builds */}
-      <section className="pb-24">
+      <section id="builds" className="pb-24">
         <FadeIn>
           <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
             Builds
           </h2>
         </FadeIn>
         <div className="mt-12 grid gap-8 sm:grid-cols-2">
-          {builds.map((build) => (
-            <FadeIn key={build.name}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          {builds.map((build) => {
+            const cardInner = (
+              <>
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#1a1a1a]">
                   <Image
@@ -178,10 +196,40 @@ export default function AIBuildsPage() {
                       </span>
                     ))}
                   </div>
+
+                  {/* View live link (only when liveUrl present) */}
+                  {build.liveUrl && (
+                    <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-medium text-accent transition-all duration-200 group-hover:gap-2 group-hover:text-accent-hover">
+                      View live
+                      <span aria-hidden="true">&rarr;</span>
+                    </span>
+                  )}
                 </div>
-              </article>
-            </FadeIn>
-          ))}
+              </>
+            );
+
+            const linkClasses =
+              "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
+            const staticClasses =
+              "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-shadow duration-300 hover:shadow-lg";
+
+            return (
+              <FadeIn key={build.name}>
+                {build.liveUrl ? (
+                  <a
+                    href={build.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClasses}
+                  >
+                    {cardInner}
+                  </a>
+                ) : (
+                  <article className={staticClasses}>{cardInner}</article>
+                )}
+              </FadeIn>
+            );
+          })}
         </div>
       </section>
 
