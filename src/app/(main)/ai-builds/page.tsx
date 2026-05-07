@@ -45,11 +45,20 @@ const builds: {
   {
     name: "Theta Simplified",
     description:
-      "Domain-trained AI assistant for the Theta blockchain ecosystem, with live on-chain data injection.",
-    tags: ["AI Assistant", "Live Data", "Web3"],
+      "Hosted product site for the Theta blockchain ecosystem — content, navigation, and an AI assistant integrated into one experience.",
+    tags: ["AI Product", "Web3", "Self-Hosted"],
+    status: "LIVE",
+    image: "/images/ai-builds/thetasimplified.webp",
+    liveUrl: "https://thetasimplified.com",
+  },
+  {
+    name: "EdgeCloud AI Assistant",
+    description:
+      "Self-trained, domain-optimized AI chatbot running on Theta EdgeCloud. Tuned to answer live on-chain queries about the Theta ecosystem.",
+    tags: ["AI Assistant", "Live Data", "Self-Hosted"],
     status: "LIVE",
     image: "/images/ai-builds/aibot.webp",
-    liveUrl: "https://thetasimplified.com",
+    liveUrl: "https://thetasimplified.com/use-edgecloud",
   },
   {
     name: "Fagerhult Sustainability Calculator",
@@ -58,6 +67,7 @@ const builds: {
     tags: ["Sales Tool", "Real-time Calculation", "B2B"],
     status: "PROTOTYPE",
     image: "/images/ai-builds/Fagerhult.webp",
+    liveUrl: "https://jaken-ux.github.io/fagerhultdemo/",
   },
   {
     name: "TLV Intranät “Atlas”",
@@ -66,6 +76,15 @@ const builds: {
     tags: ["Public Sector", "IA", "Concept"],
     status: "CONCEPT",
     image: "/images/ai-builds/TLV.webp",
+  },
+  {
+    name: "Manor Lords",
+    description:
+      "Live multiplayer strategy game built end-to-end through AI-augmented development.",
+    tags: ["Multiplayer Game", "AI-Augmented Build", "Real-time"],
+    status: "LIVE",
+    image: "/images/manor-lords/main.webp",
+    liveUrl: "/projects/manor-lords",
   },
 ];
 
@@ -197,10 +216,10 @@ export default function AIBuildsPage() {
                     ))}
                   </div>
 
-                  {/* View live link (only when liveUrl present) */}
+                  {/* Link label (only when liveUrl present) */}
                   {build.liveUrl && (
                     <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-medium text-accent transition-all duration-200 group-hover:gap-2 group-hover:text-accent-hover">
-                      View live
+                      {build.liveUrl.startsWith("/") ? "View case" : "View live"}
                       <span aria-hidden="true">&rarr;</span>
                     </span>
                   )}
@@ -212,18 +231,25 @@ export default function AIBuildsPage() {
               "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
             const staticClasses =
               "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-shadow duration-300 hover:shadow-lg";
+            const isInternal = build.liveUrl?.startsWith("/") ?? false;
 
             return (
               <FadeIn key={build.name}>
                 {build.liveUrl ? (
-                  <a
-                    href={build.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={linkClasses}
-                  >
-                    {cardInner}
-                  </a>
+                  isInternal ? (
+                    <Link href={build.liveUrl} className={linkClasses}>
+                      {cardInner}
+                    </Link>
+                  ) : (
+                    <a
+                      href={build.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClasses}
+                    >
+                      {cardInner}
+                    </a>
+                  )
                 ) : (
                   <article className={staticClasses}>{cardInner}</article>
                 )}

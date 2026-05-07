@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# CV source files (local archive only, not deployed)
+/public/cv/nya cvn/
+/public/cv/nya cvn.zip
+~$*

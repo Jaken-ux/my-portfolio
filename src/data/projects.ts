@@ -40,11 +40,4 @@ export const projects: Project[] = [
     imageType: "logo",
     tags: ["Enterprise", "Design System", "UX"],
   },
-  {
-    slug: "manor-lords",
-    title: "Manor Lords",
-    description: "Building a multiplayer strategy game through AI-augmented development.",
-    image: "/images/manor-lords/main.webp",
-    tags: ["React", "Node", "Socket.io", "AI Collaboration"],
-  },
 ];

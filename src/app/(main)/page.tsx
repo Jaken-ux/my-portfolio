@@ -2,6 +2,7 @@ import Link from "next/link";
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
+import CVDownload from "@/components/CVDownload";
 
 const highlights = [
   "13+ years experience",
@@ -20,9 +21,10 @@ export default function Home() {
           </h1>
         </FadeIn>
         <FadeIn>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             I help teams build clear, usable experiences through research,
-            structure, prototyping and testing.
+            structure, and AI-augmented prototyping — taking ideas from brief
+            to working product in days, not weeks.
           </p>
         </FadeIn>
         <FadeIn>
@@ -33,13 +35,7 @@ export default function Home() {
             >
               View Work
             </Link>
-            <a
-              href="/cv/Jacob_Jansson_CV.pdf"
-              download
-              className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
-            >
-              Download CV
-            </a>
+            <CVDownload />
           </div>
         </FadeIn>
       </section>

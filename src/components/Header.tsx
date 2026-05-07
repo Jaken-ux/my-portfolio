@@ -9,7 +9,7 @@ const navLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "AI Builds", href: "/ai-builds" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "CV", href: "/cv/Jacob_Jansson_CV.pdf", external: true },
+  { label: "CV", href: "/cv/Jacob_Jansson_CV_UX_EN.pdf", external: true },
 ];
 
 export default function Header() {
@@ -27,12 +27,24 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-5">
-        <Link
-          href="/"
-          className="text-lg font-bold tracking-tight text-foreground transition-opacity hover:opacity-70"
-        >
-          Jacob Jansson
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/"
+            className="text-lg font-bold tracking-tight text-foreground transition-opacity hover:opacity-70"
+          >
+            Jacob Jansson
+          </Link>
+          <span
+            className="hidden items-center gap-1.5 text-xs font-medium text-muted sm:inline-flex"
+            aria-label="Currently open for new projects"
+          >
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-[#10b981]"
+              aria-hidden="true"
+            />
+            Open for new projects
+          </span>
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden gap-8 md:flex" aria-label="Main navigation">

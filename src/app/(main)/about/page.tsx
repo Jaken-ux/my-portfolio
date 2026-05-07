@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import CVDownload from "@/components/CVDownload";
 
 const workBlockNumbers = ["01", "02", "03"];
 
@@ -50,6 +51,13 @@ export default function AboutPage() {
               <h1 className="text-[2.25rem] font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-[2.75rem]">
                 About Jacob
               </h1>
+              <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted">
+                <span
+                  className="h-2 w-2 rounded-full bg-[#10b981]"
+                  aria-hidden="true"
+                />
+                Currently exploring new opportunities
+              </p>
             </FadeIn>
 
             <FadeIn>
@@ -99,14 +107,7 @@ export default function AboutPage() {
                 >
                   Get in touch
                 </a>
-                <a
-                  href="/cv/Jacob_Jansson_CV.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
-                >
-                  Download CV
-                </a>
+                <CVDownload />
               </div>
             </FadeIn>
           </div>
