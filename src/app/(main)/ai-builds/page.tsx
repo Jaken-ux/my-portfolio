@@ -61,6 +61,15 @@ const builds: {
     liveUrl: "https://thetasimplified.com/use-edgecloud",
   },
   {
+    name: "Manor Lords",
+    description:
+      "Live multiplayer strategy game built end-to-end through AI-augmented development.",
+    tags: ["Multiplayer Game", "AI-Augmented Build", "Real-time"],
+    status: "LIVE",
+    image: "/images/manor-lords/main.webp",
+    liveUrl: "/projects/manor-lords",
+  },
+  {
     name: "Fagerhult Sustainability Calculator",
     description:
       "Interactive simulation showing customers how much CO₂ and energy they can save by switching luminaires.",
@@ -76,15 +85,6 @@ const builds: {
     tags: ["Public Sector", "IA", "Concept"],
     status: "CONCEPT",
     image: "/images/ai-builds/TLV.webp",
-  },
-  {
-    name: "Manor Lords",
-    description:
-      "Live multiplayer strategy game built end-to-end through AI-augmented development.",
-    tags: ["Multiplayer Game", "AI-Augmented Build", "Real-time"],
-    status: "LIVE",
-    image: "/images/manor-lords/main.webp",
-    liveUrl: "/projects/manor-lords",
   },
 ];
 
