@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { projects, buildingNow } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
 import CVDownload from "@/components/CVDownload";
@@ -71,6 +71,62 @@ export default function Home() {
             </FadeIn>
           ))}
         </div>
+      </section>
+
+      {/* Building Now */}
+      <section className="border-t border-border py-24">
+        <FadeIn>
+          <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+            Building Now
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+            Side projects exploring what AI-augmented development makes
+            possible. Working products, not concepts.
+          </p>
+        </FadeIn>
+
+        <div className="mt-12 grid gap-8 sm:grid-cols-2">
+          {buildingNow.map((project) => (
+            <FadeIn key={project.slug}>
+              <ProjectCard project={project} />
+            </FadeIn>
+          ))}
+        </div>
+
+        <FadeIn>
+          <div className="mt-10">
+            <Link
+              href="/ai-builds"
+              className="inline-flex items-center gap-1 text-sm font-medium text-accent transition-all duration-200 hover:gap-2 hover:text-accent-hover"
+            >
+              See all AI builds
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* Writing teaser */}
+      <section className="border-t border-border py-24">
+        <FadeIn>
+          <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+            Writing
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+            Builder logs on AI-augmented development, decentralized
+            infrastructure, and what becomes possible when the gap between
+            idea and execution shrinks.
+          </p>
+          <div className="mt-6">
+            <Link
+              href="/writing"
+              className="inline-flex items-center gap-1 text-sm font-medium text-accent transition-all duration-200 hover:gap-2 hover:text-accent-hover"
+            >
+              Read the journal
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </FadeIn>
       </section>
     </>
   );

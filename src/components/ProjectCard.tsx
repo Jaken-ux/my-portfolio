@@ -3,11 +3,29 @@ import Image from "next/image";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const isExternal = Boolean(project.externalUrl);
+  const href = project.externalUrl ?? `/projects/${project.slug}`;
+  const ctaLabel = project.cta ?? "View case";
+  const cardClasses =
+    "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
+  const Wrapper = ({ children }: { children: React.ReactNode }) =>
+    isExternal ? (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cardClasses}
+      >
+        {children}
+      </a>
+    ) : (
+      <Link href={href} className={cardClasses}>
+        {children}
+      </Link>
+    );
+
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-    >
+    <Wrapper>
       {/* Image */}
       <div className={`relative aspect-[16/10] overflow-hidden ${
         project.imageType === "logo" ? "bg-white" : "bg-[#e5e7eb]"
@@ -48,10 +66,10 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         {/* CTA */}
         <span className="mt-auto inline-flex items-center pt-5 gap-1 text-sm font-medium text-accent transition-all duration-200 group-hover:gap-2 group-hover:text-accent-hover">
-          View case
+          {ctaLabel}
           <span aria-hidden="true">&rarr;</span>
         </span>
       </div>
-    </Link>
+    </Wrapper>
   );
 }

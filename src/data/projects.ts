@@ -5,6 +5,8 @@ export type Project = {
   image: string;
   imageType?: "photo" | "logo";
   tags: string[];
+  externalUrl?: string;
+  cta?: string;
 };
 
 export const projects: Project[] = [
@@ -39,5 +41,27 @@ export const projects: Project[] = [
     image: "/images/worldline/mainworldline.webp",
     imageType: "logo",
     tags: ["Enterprise", "Design System", "UX"],
+  },
+];
+
+export const buildingNow: Project[] = [
+  {
+    slug: "theta-simplified",
+    title: "Theta Simplified",
+    description:
+      "Live analytics platform for the Theta blockchain ecosystem. Composite indexes, on-chain data, integrated AI assistant — all running on decentralized GPU infrastructure.",
+    image: "/images/ai-builds/thetasimplified.webp",
+    tags: ["AI Product", "Web3", "Self-hosted"],
+    externalUrl: "https://thetasimplified.com",
+    cta: "View live",
+  },
+  {
+    slug: "manor-lords",
+    title: "Manor Lords",
+    description:
+      "Real-time multiplayer strategy game built end-to-end through AI-augmented development. From mechanic design to deployment.",
+    image: "/images/manor-lords/main.webp",
+    tags: ["Multiplayer Game", "AI-Augmented Build", "Real-time"],
+    cta: "View case",
   },
 ];

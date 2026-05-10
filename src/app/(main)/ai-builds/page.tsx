@@ -45,8 +45,8 @@ const builds: {
   {
     name: "Theta Simplified",
     description:
-      "Hosted product site for the Theta blockchain ecosystem — content, navigation, and an AI assistant integrated into one experience.",
-    tags: ["AI Product", "Web3", "Self-Hosted"],
+      "Live analytics platform for the Theta blockchain ecosystem. Composite indexes, on-chain data, integrated AI assistant — all running on decentralized GPU infrastructure.",
+    tags: ["AI Product", "Web3", "Self-hosted"],
     status: "LIVE",
     image: "/images/ai-builds/thetasimplified.webp",
     liveUrl: "https://thetasimplified.com",
@@ -63,7 +63,7 @@ const builds: {
   {
     name: "Manor Lords",
     description:
-      "Live multiplayer strategy game built end-to-end through AI-augmented development.",
+      "Real-time multiplayer strategy game built end-to-end through AI-augmented development. From mechanic design to deployment.",
     tags: ["Multiplayer Game", "AI-Augmented Build", "Real-time"],
     status: "LIVE",
     image: "/images/manor-lords/main.webp",

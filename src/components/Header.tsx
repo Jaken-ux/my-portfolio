@@ -7,6 +7,7 @@ import { useState } from "react";
 const navLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Work", href: "/#work" },
   { label: "AI Builds", href: "/ai-builds" },
+  { label: "Writing", href: "/writing" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "CV", href: "/cv/Jacob_Jansson_CV_UX_EN.pdf", external: true },
