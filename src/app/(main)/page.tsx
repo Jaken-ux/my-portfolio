@@ -56,6 +56,39 @@ export default function Home() {
         </section>
       </FadeIn>
 
+      {/* Availability */}
+      <FadeIn>
+        <section className="py-16">
+          <div className="rounded-2xl border border-border bg-white p-8 sm:p-10">
+            <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-muted">
+                  <span
+                    className="relative flex h-2 w-2 items-center justify-center"
+                    aria-hidden="true"
+                  >
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10b981] opacity-60" />
+                    <span className="relative h-2 w-2 rounded-full bg-[#10b981]" />
+                  </span>
+                  Currently available
+                </span>
+                <p className="mt-4 text-lg leading-relaxed text-foreground">
+                  Senior UX, AI prototyping, and discovery work — open for
+                  contract, fractional, or under-consultant roles. Remote or
+                  Stockholm-based.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex h-11 shrink-0 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
+              >
+                Get in touch
+              </Link>
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
       {/* Featured Projects */}
       <section id="work" className="py-24">
         <FadeIn>
