@@ -41,7 +41,18 @@ const builds: {
   status: Status;
   image: string;
   liveUrl?: string;
+  beta?: boolean;
 }[] = [
+  {
+    name: "Flowscan — Web UX & accessibility analysis",
+    description:
+      "A website analysis tool that runs several engines in parallel — performance, accessibility, computer vision and copy — and weighs the findings deterministically. AI surfaces the problems; code decides what matters most, the same way every time.",
+    tags: ["UX & Accessibility", "Multi-engine", "SaaS"],
+    status: "LIVE",
+    beta: true,
+    image: "/images/ai-builds/flowscan.webp",
+    liveUrl: "https://flowscan.se",
+  },
   {
     name: "Theta Simplified",
     description:
@@ -188,11 +199,18 @@ export default function AIBuildsPage() {
                     className="object-contain p-5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
-                  <span
-                    className={`absolute right-3 top-3 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${statusStyles[build.status]}`}
-                  >
-                    {build.status}
-                  </span>
+                  <div className="absolute right-3 top-3 flex flex-row-reverse gap-1.5">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${statusStyles[build.status]}`}
+                    >
+                      {build.status}
+                    </span>
+                    {build.beta && (
+                      <span className="rounded-full border border-white/30 bg-black/40 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
+                        Beta
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Content */}
