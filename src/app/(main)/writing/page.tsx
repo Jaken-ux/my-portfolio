@@ -14,6 +14,14 @@ const posts: {
   url: string;
 }[] = [
   {
+    title: "Late night thoughts on Theta’s critics",
+    date: "June 2026",
+    readTime: "3 min read",
+    description:
+      "Long X threads in all caps make a familiar case against Theta. Some of it lands, some of it doesn’t — notes on what’s worth taking seriously.",
+    url: "https://thetasimplified.com/journal/late-night-thoughts-theta-critics",
+  },
+  {
     title:
       "Calling Theta EdgeCloud directly from Claude — a working MCP setup",
     date: "May 2026",
