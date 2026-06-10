@@ -1,16 +1,18 @@
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import ContactChannels, { type Channel } from "@/components/ContactChannels";
 
 export const metadata = {
   title: "Contact – Jacob Jansson",
   description: "Get in touch with Jacob Jansson — UX Designer based in Sweden.",
 };
 
-const contactChannels = [
+const contactChannels: Channel[] = [
   {
     label: "Email",
     value: "Jansson.jacob@gmail.com",
     href: "mailto:Jansson.jacob@gmail.com",
+    copyValue: "Jansson.jacob@gmail.com",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -59,33 +61,7 @@ export default function ContactPage() {
             </p>
 
             {/* Contact channels */}
-            <div className="mt-12 space-y-6">
-              {contactChannels.map((channel) => (
-                <a
-                  key={channel.label}
-                  href={channel.href}
-                  target={channel.label === "LinkedIn" ? "_blank" : undefined}
-                  rel={
-                    channel.label === "LinkedIn"
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  className="group flex items-center gap-5 rounded-xl border border-border bg-background p-5 transition-all duration-200 hover:border-foreground/20 hover:shadow-md"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#f3f4f6] text-muted transition-colors group-hover:bg-foreground group-hover:text-background">
-                    {channel.icon}
-                  </span>
-                  <div>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted">
-                      {channel.label}
-                    </span>
-                    <p className="mt-0.5 text-base font-medium text-foreground">
-                      {channel.value}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <ContactChannels channels={contactChannels} />
 
             {/* Availability note */}
             <div className="mt-12 rounded-xl border border-border bg-[#fafafa] px-6 py-5">

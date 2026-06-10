@@ -124,12 +124,12 @@ export default function AIBuildsPage() {
         </FadeIn>
         <FadeIn>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="mailto:jansson.jacob@gmail.com"
+            <Link
+              href="/contact"
               className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
             >
               Get in touch
-            </a>
+            </Link>
             <a
               href="#builds"
               className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
@@ -289,12 +289,12 @@ export default function AIBuildsPage() {
             that needs to become real fast — get in touch.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="mailto:jansson.jacob@gmail.com"
+            <Link
+              href="/contact"
               className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
             >
               Get in touch
-            </a>
+            </Link>
             <Link
               href="/"
               className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
