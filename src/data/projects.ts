@@ -46,13 +46,13 @@ export const projects: Project[] = [
 
 export const buildingNow: Project[] = [
   {
-    slug: "theta-simplified",
-    title: "Theta Simplified",
+    slug: "flowscan",
+    title: "Flowscan — Web UX & accessibility analysis",
     description:
-      "Live analytics platform for the Theta blockchain ecosystem. Composite indexes, on-chain data, integrated AI assistant — all running on decentralized GPU infrastructure.",
-    image: "/images/ai-builds/thetasimplified.webp",
-    tags: ["AI Product", "Web3", "Self-hosted"],
-    externalUrl: "https://thetasimplified.com",
+      "A website analysis tool that runs several engines in parallel — performance, accessibility, computer vision and copy — and weighs the findings deterministically. AI surfaces the problems; code decides what matters most, the same way every time.",
+    image: "/images/ai-builds/flowscan.webp",
+    tags: ["UX & Accessibility", "Multi-engine", "SaaS"],
+    externalUrl: "https://flowscan.se",
     cta: "View live",
   },
   {
