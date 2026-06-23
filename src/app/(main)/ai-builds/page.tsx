@@ -97,6 +97,15 @@ const builds: {
     status: "CONCEPT",
     image: "/images/ai-builds/TLV.webp",
   },
+  {
+    name: "Klocktornet — B2B Event Service",
+    description:
+      "Launched a facilitated team-building service from idea to live product — positioning, branding, SEO, pricing, contracts, and booking flow. Built and deployed in days, not weeks.",
+    tags: ["Service Design", "Brand Strategy", "SEO"],
+    status: "LIVE",
+    image: "/images/ai-builds/klocktornet.webp",
+    liveUrl: "https://www.theclocktower.se",
+  },
 ];
 
 const statusStyles: Record<Status, string> = {
