@@ -82,3 +82,21 @@ html {
 .animate-fade-in {
   animation: fade-in 150ms ease-out both;
 }
+
+/*
+ * Default stack-pose for Selected Work cards.
+ * Applied via CSS (not JS) so first paint on desktop shows the stack pose
+ * immediately — motion takes over after hydration with matching initial
+ * values, avoiding any position jump. On mobile or reduced-motion users
+ * the media query doesn't match → cards render at natural row position.
+ * Values here MUST match useTransform([0,1], [stackValue, 0]) in
+ * SelectedWorkMorph.tsx for a seamless handoff.
+ */
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .selected-card-stack-a {
+    transform: translate3d(500px, -780px, 0) rotate(-5deg) scale(0.62);
+  }
+  .selected-card-stack-b {
+    transform: translate3d(80px, -800px, 0) rotate(6deg) scale(0.62);
+  }
+}
