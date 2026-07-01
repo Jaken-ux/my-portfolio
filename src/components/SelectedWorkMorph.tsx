@@ -309,6 +309,7 @@ export default function SelectedWorkMorph({
         >
           <SelectedCard
             card={cards[1]}
+            priority
             metaOpacity={hydrated ? metaOpacityValue : undefined}
           />
         </motion.div>

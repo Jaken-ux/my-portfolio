@@ -3,6 +3,7 @@ import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
 import HeroAndSelectedWork from "@/components/HeroAndSelectedWork";
+import CyclingStatement from "@/components/CyclingStatement";
 
 export default function Home() {
   return (
@@ -82,6 +83,9 @@ export default function Home() {
           </div>
         </FadeIn>
       </section>
+
+      {/* Cycling statement — last before footer */}
+      <CyclingStatement />
     </>
   );
 }
