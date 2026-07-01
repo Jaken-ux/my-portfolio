@@ -132,7 +132,10 @@ export default function PrimaryCTA({
           stroke="var(--color-accent)"
           strokeWidth={STROKE_WIDTH}
           fill="none"
-          strokeLinecap="round"
+          // butt (flat) caps — a round cap would extend STROKE_WIDTH/2 past
+          // the dash's mathematical end and show as a small blue dot at the
+          // 9 o'clock start position even when the dash is fully offset.
+          strokeLinecap="butt"
           pathLength={1}
           strokeDasharray="1 1"
           initial={{ strokeDashoffset: 1 }}
