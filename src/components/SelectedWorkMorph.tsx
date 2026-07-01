@@ -7,22 +7,10 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  useMotionValue,
   type MotionValue,
 } from "motion/react";
 import FadeIn from "@/components/FadeIn";
-
-// Detect desktop without flashing — initial value matches SSR (false).
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    setIsDesktop(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-  return isDesktop;
-}
 
 type Card = {
   title: string;
@@ -71,25 +59,48 @@ function SelectedCard({
 }: {
   card: Card;
   priority?: boolean;
-  metaOpacity?: MotionValue<number> | number;
+  // Always a stable MotionValue (or undefined pre-hydration). NEVER a literal
+  // number — motion v12 breaks its opacity subscription when the style prop
+  // transitions from a literal to a motion value. See parent for the pattern.
+  metaOpacity?: MotionValue<number>;
 }) {
+  const reduceMotion = useReducedMotion() ?? false;
+  const [hovered, setHovered] = useState(false);
+
+  // pointerType === "mouse" filter prevents touch taps from sticking in hover.
+  const handlePointerEnter = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setHovered(true);
+  };
+  const handlePointerLeave = () => setHovered(false);
+
   return (
     <a
       href={card.href}
       target="_blank"
       rel="noopener noreferrer"
       className="group block"
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     >
       <BrowserFrame>
-        <div className="relative aspect-[16/9]">
-          <Image
-            src={card.image}
-            alt={card.title}
-            fill
-            priority={priority}
-            sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 540px"
-            className="object-cover"
-          />
+        {/* overflow-hidden on this container is critical — clips the scaled
+            image so the browser-frame chrome (3 dots) stays still and only
+            the image content visually grows. */}
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <motion.div
+            className="absolute inset-0"
+            animate={{ scale: hovered && !reduceMotion ? 1.07 : 1 }}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+          >
+            <Image
+              src={card.image}
+              alt={card.title}
+              fill
+              priority={priority}
+              sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 540px"
+              className="object-cover"
+            />
+          </motion.div>
         </div>
       </BrowserFrame>
       <motion.div
@@ -112,9 +123,16 @@ function SelectedCard({
             </span>
           ))}
         </div>
-        <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-all duration-200 group-hover:gap-2 group-hover:text-accent-hover">
+        <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
           View live
-          <span aria-hidden="true">&rarr;</span>
+          <motion.span
+            aria-hidden="true"
+            className="inline-block"
+            animate={{ x: hovered && !reduceMotion ? 4 : 0 }}
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          >
+            &rarr;
+          </motion.span>
         </span>
       </motion.div>
     </a>
@@ -128,17 +146,31 @@ export default function SelectedWorkMorph({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
-  const isDesktop = useIsDesktop();
+
+  // Batched hydration + desktop detection in a single state atom so both
+  // flags flip together after mount. Prevents an intermediate render where
+  // hydrated=true but isDesktop=false, which would briefly pass literal
+  // opacity=1 to motion.div for metadata — motion v12 sometimes doesn't
+  // cleanly transition back to a motion-value binding from that state.
+  const [{ hydrated, isDesktop }, setHydrationState] = useState({
+    hydrated: false,
+    isDesktop: false,
+  });
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setHydrationState({ hydrated: true, isDesktop: mq.matches });
+    const onChange = (e: MediaQueryListEvent) =>
+      setHydrationState((s) => ({ ...s, isDesktop: e.matches }));
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
   const shouldMorph = isDesktop && !reduceMotion;
 
-  // Track hydration so SSR/first-paint matches the no-style state.
-  // After hydration we pass an explicit opacity (1 on mobile/reduced,
-  // motion value on desktop+motion-safe) so nothing can hide metadata
-  // by accident — inline style beats every CSS rule.
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
+  // Skip the scroll-driven morph during programmatic navigation (Case Studies
+  // link) so the cards don't rush through their flight at smooth-scroll speed.
+  // Released when scroll reaches the destination (progress >= 0.99) OR after
+  // 1500ms fallback. Cards stay at row-pose throughout the smooth scroll.
+  const [skipMorph, setSkipMorph] = useState(false);
 
   // Scroll progress tracked against the hero section, NOT Selected Work,
   // so progress is guaranteed = 0 at scrollY=0 (page top, hero in view).
@@ -163,9 +195,80 @@ export default function SelectedWorkMorph({
   const bScale = useTransform(scrollYProgress, [0, 1], [0.62, 1]);
 
   // Metadata opacity — text fades in toward the end of the flight, so the
-  // stack reads as clean image-only frames mid-flight. CSS fallback below
-  // matches the initial value (0) on desktop+motion-safe to avoid first-paint.
-  const metaOpacity = useTransform(scrollYProgress, [0.6, 1], [0, 1]);
+  // stack reads as clean image-only frames mid-flight. Uses a stable
+  // useMotionValue that we manually .set() based on scroll + state
+  // (skipMorph, shouldMorph). The reference is fixed for the whole lifecycle;
+  // motion.div's style prop points at the SAME motion value from hydration
+  // onwards, so motion never has to re-subscribe (which is where motion v12
+  // would drop updates after a literal-number transition).
+  const scrollDerivedOpacity = useTransform(scrollYProgress, [0.6, 1], [0, 1]);
+  const metaOpacityValue = useMotionValue(0);
+
+  // Wire up skipMorph: arm via Header CustomEvent (same-page click) or via
+  // window.location.hash at mount (cross-page nav with /#work URL).
+  // Release early when scroll reaches destination, fallback timeout 1500ms.
+  useEffect(() => {
+    let timeoutId: number | undefined;
+    let unsubscribe: (() => void) | undefined;
+
+    const release = () => {
+      setSkipMorph(false);
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId);
+        timeoutId = undefined;
+      }
+      unsubscribe?.();
+      unsubscribe = undefined;
+    };
+
+    const beginSkip = () => {
+      setSkipMorph(true);
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      unsubscribe?.();
+
+      timeoutId = window.setTimeout(release, 1500);
+
+      if (scrollYProgress.get() >= 0.99) {
+        release();
+        return;
+      }
+      unsubscribe = scrollYProgress.on("change", (value) => {
+        if (value >= 0.99) release();
+      });
+    };
+
+    if (window.location.hash === "#work") {
+      beginSkip();
+    }
+
+    const handler = () => beginSkip();
+    window.addEventListener("nav-skip-morph", handler);
+
+    return () => {
+      window.removeEventListener("nav-skip-morph", handler);
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      unsubscribe?.();
+    };
+  }, [scrollYProgress]);
+
+  const morphActive = shouldMorph && !skipMorph;
+
+  // Drive the stable metaOpacityValue based on state + scroll. Never touches
+  // the motion.div's style prop reference — only mutates the value inside.
+  useEffect(() => {
+    const update = () => {
+      if (!hydrated) return;
+      if (!shouldMorph || skipMorph) {
+        metaOpacityValue.set(1);
+      } else {
+        metaOpacityValue.set(scrollDerivedOpacity.get());
+      }
+    };
+    update();
+    const unsub = scrollDerivedOpacity.on("change", update);
+    return unsub;
+  }, [hydrated, shouldMorph, skipMorph, scrollDerivedOpacity, metaOpacityValue]);
+  const identityStyle = { y: 0, x: 0, rotate: 0, scale: 1 };
 
   return (
     <section
@@ -181,32 +284,32 @@ export default function SelectedWorkMorph({
         <motion.div
           className="selected-card-stack-a"
           style={
-            shouldMorph
+            morphActive
               ? { y: aY, x: aX, rotate: aRot, scale: aScale }
-              : undefined
+              : shouldMorph
+                ? identityStyle
+                : undefined
           }
         >
           <SelectedCard
             card={cards[0]}
             priority
-            metaOpacity={
-              hydrated ? (shouldMorph ? metaOpacity : 1) : undefined
-            }
+            metaOpacity={hydrated ? metaOpacityValue : undefined}
           />
         </motion.div>
         <motion.div
           className="selected-card-stack-b"
           style={
-            shouldMorph
+            morphActive
               ? { y: bY, x: bX, rotate: bRot, scale: bScale }
-              : undefined
+              : shouldMorph
+                ? identityStyle
+                : undefined
           }
         >
           <SelectedCard
             card={cards[1]}
-            metaOpacity={
-              hydrated ? (shouldMorph ? metaOpacity : 1) : undefined
-            }
+            metaOpacity={hydrated ? metaOpacityValue : undefined}
           />
         </motion.div>
       </div>

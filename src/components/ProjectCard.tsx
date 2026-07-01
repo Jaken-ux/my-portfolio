@@ -1,43 +1,48 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const reduceMotion = useReducedMotion() ?? false;
+  const [hovered, setHovered] = useState(false);
+
   const isExternal = Boolean(project.externalUrl);
   const href = project.externalUrl ?? `/projects/${project.slug}`;
   const ctaLabel = project.cta ?? "View case";
-  const cardClasses =
-    "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
-  const Wrapper = ({ children }: { children: React.ReactNode }) =>
-    isExternal ? (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cardClasses}
-      >
-        {children}
-      </a>
-    ) : (
-      <Link href={href} className={cardClasses}>
-        {children}
-      </Link>
-    );
 
-  return (
-    <Wrapper>
-      {/* Image */}
-      <div className={`relative aspect-[16/10] overflow-hidden ${
-        project.imageType === "logo" ? "bg-white" : "bg-[#e5e7eb]"
-      }`}>
+  // Calm: no lift, no shadow swap, no image scale.
+  // Only the border darkens slightly on hover (Tailwind's hover: is already
+  // scoped to @media (hover: hover), so touch taps won't trigger it).
+  const cardClasses =
+    "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-colors duration-300 hover:border-foreground/20";
+
+  // Pointer enter only fires for mouse — touch taps don't set hovered state,
+  // so the arrow nudge never sticks after a tap.
+  const handlePointerEnter = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setHovered(true);
+  };
+  const handlePointerLeave = () => setHovered(false);
+
+  const cardInner = (
+    <>
+      {/* Image — no scale on hover for either logos or photos */}
+      <div
+        className={`relative aspect-[16/10] overflow-hidden ${
+          project.imageType === "logo" ? "bg-white" : "bg-[#e5e7eb]"
+        }`}
+      >
         <Image
           src={project.image}
           alt={project.title}
           fill
           className={
             project.imageType === "logo"
-              ? `object-contain transition-transform duration-500 ease-out group-hover:scale-[1.05] ${project.slug === "husqvarna-dealer-portal" ? "p-10" : "p-6"}`
-              : "object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              ? `object-contain ${project.slug === "husqvarna-dealer-portal" ? "p-10" : "p-6"}`
+              : "object-cover"
           }
           sizes="(max-width: 640px) 100vw, 50vw"
         />
@@ -64,12 +69,41 @@ export default function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        {/* CTA */}
-        <span className="mt-auto inline-flex items-center pt-5 gap-1 text-sm font-medium text-accent transition-all duration-200 group-hover:gap-2 group-hover:text-accent-hover">
+        {/* CTA — arrow nudges right on hover, spring-soft, skipped on reduced-motion */}
+        <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-medium text-accent">
           {ctaLabel}
-          <span aria-hidden="true">&rarr;</span>
+          <motion.span
+            aria-hidden="true"
+            className="inline-block"
+            animate={{ x: hovered && !reduceMotion ? 4 : 0 }}
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          >
+            &rarr;
+          </motion.span>
         </span>
       </div>
-    </Wrapper>
+    </>
+  );
+
+  return isExternal ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cardClasses}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+    >
+      {cardInner}
+    </a>
+  ) : (
+    <Link
+      href={href}
+      className={cardClasses}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+    >
+      {cardInner}
+    </Link>
   );
 }

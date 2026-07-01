@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks: { label: string; href: string; external?: boolean }[] = [
-  { label: "Work", href: "/#work" },
+  { label: "Case Studies", href: "/#work" },
   { label: "AI Builds", href: "/ai-builds" },
   { label: "Writing", href: "/writing" },
   { label: "About", href: "/about" },
@@ -21,6 +21,10 @@ export default function Header() {
     const hash = href.split("#")[1];
     if (hash && pathname === "/") {
       e.preventDefault();
+      // Tell SelectedWorkMorph to skip its scroll-driven morph during the
+      // upcoming smooth scroll — otherwise the cards flash through their
+      // entire flight at scroll-speed.
+      window.dispatchEvent(new CustomEvent("nav-skip-morph"));
       document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
     }
   };
