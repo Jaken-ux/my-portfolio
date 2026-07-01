@@ -5,8 +5,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 
 // --- Tuneables ---
-const STROKE_WIDTH = 1.5;
-const OUTSET = 2; // pixels the outline sits outside the button
+const STROKE_WIDTH = 3;
+const OUTSET = 3; // pixels the outline sits outside the button
 const LINE_DURATION_S = 0.45; // draw + retract time
 const LINE_EASE: [number, number, number, number] = [0.5, 0, 0.15, 1];
 
@@ -59,6 +59,11 @@ export default function PrimaryCTA({
   // Callback ref: works uniformly for Link, <a> and <button>. Attaches a
   // ResizeObserver so the SVG stays in sync with the button's actual
   // rendered dimensions (text/viewport changes update the outline pill).
+  //
+  // IMPORTANT: use getBoundingClientRect() (border-box), NOT contentRect
+  // (content-box). The button has horizontal padding (px-6 = 48px total)
+  // that contentRect excludes — using contentRect would make the SVG pill
+  // 48px too narrow, curving the right arc in before the button's real edge.
   const setElement = useCallback((node: HTMLElement | null) => {
     if (observerRef.current) {
       observerRef.current.disconnect();
@@ -66,10 +71,8 @@ export default function PrimaryCTA({
     }
     if (!node) return;
     const ro = new ResizeObserver(([entry]) => {
-      setSize({
-        width: entry.contentRect.width,
-        height: entry.contentRect.height,
-      });
+      const rect = (entry.target as HTMLElement).getBoundingClientRect();
+      setSize({ width: rect.width, height: rect.height });
     });
     ro.observe(node);
     observerRef.current = ro;
