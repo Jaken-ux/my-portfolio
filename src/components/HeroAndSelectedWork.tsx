@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import CVDownload from "@/components/CVDownload";
+import PrimaryCTA from "@/components/PrimaryCTA";
 import SelectedWorkMorph from "@/components/SelectedWorkMorph";
 
 const highlights = [
@@ -40,12 +41,7 @@ export default function HeroAndSelectedWork() {
         </FadeIn>
         <FadeIn>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/#work"
-              className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-            >
-              View Work
-            </Link>
+            <PrimaryCTA href="/#work">View Work</PrimaryCTA>
             <CVDownload />
           </div>
         </FadeIn>

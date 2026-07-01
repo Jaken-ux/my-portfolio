@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import PrimaryCTA from "@/components/PrimaryCTA";
 
 export const metadata = {
   title: "AI Builds — Jacob Jansson",
@@ -133,12 +134,7 @@ export default function AIBuildsPage() {
         </FadeIn>
         <FadeIn>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-            >
-              Get in touch
-            </Link>
+            <PrimaryCTA href="/contact">Get in touch</PrimaryCTA>
             <a
               href="#builds"
               className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
@@ -298,12 +294,7 @@ export default function AIBuildsPage() {
             that needs to become real fast — get in touch.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-            >
-              Get in touch
-            </Link>
+            <PrimaryCTA href="/contact">Get in touch</PrimaryCTA>
             <Link
               href="/"
               className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"

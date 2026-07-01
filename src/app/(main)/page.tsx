@@ -4,6 +4,7 @@ import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
 import HeroAndSelectedWork from "@/components/HeroAndSelectedWork";
 import CyclingStatement from "@/components/CyclingStatement";
+import PrimaryCTA from "@/components/PrimaryCTA";
 
 export default function Home() {
   return (
@@ -33,12 +34,9 @@ export default function Home() {
                   Stockholm-based.
                 </p>
               </div>
-              <Link
-                href="/contact"
-                className="inline-flex h-11 shrink-0 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-              >
+              <PrimaryCTA href="/contact" className="shrink-0">
                 Get in touch
-              </Link>
+              </PrimaryCTA>
             </div>
           </div>
         </section>

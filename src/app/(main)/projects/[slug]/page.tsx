@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { projectContent } from "@/content/projects";
 import FadeIn from "@/components/FadeIn";
+import PrimaryCTA from "@/components/PrimaryCTA";
 
 export function generateStaticParams() {
   return projectContent.map((p) => ({ slug: p.slug }));
@@ -122,14 +123,9 @@ export default async function ProjectPage({
           {/* Demo link */}
           {project.demoUrl && (
             <div className="mt-6">
-              <a
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-              >
+              <PrimaryCTA href={project.demoUrl}>
                 {project.demoLabel ?? "Play the Prototype"} &rarr;
-              </a>
+              </PrimaryCTA>
             </div>
           )}
 
@@ -524,12 +520,9 @@ export default async function ProjectPage({
             <p className="max-w-2xl text-base leading-[1.75] text-muted">
               {project.endCta.text}
             </p>
-            <Link
-              href={project.endCta.href}
-              className="mt-5 inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-            >
+            <PrimaryCTA href={project.endCta.href} className="mt-5">
               {project.endCta.linkLabel} &rarr;
-            </Link>
+            </PrimaryCTA>
           </section>
         </FadeIn>
       )}

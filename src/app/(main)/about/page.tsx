@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import CVDownload from "@/components/CVDownload";
+import PrimaryCTA from "@/components/PrimaryCTA";
 
 const workBlockNumbers = ["01", "02", "03"];
 
@@ -102,12 +103,7 @@ export default function AboutPage() {
 
             <FadeIn>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex h-11 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-[#333] hover:shadow-md"
-                >
-                  Get in touch
-                </Link>
+                <PrimaryCTA href="/contact">Get in touch</PrimaryCTA>
                 <CVDownload />
               </div>
             </FadeIn>
