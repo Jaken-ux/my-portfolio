@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import PrimaryCTA from "@/components/PrimaryCTA";
+import AIBuildCard, { type Build } from "@/components/AIBuildCard";
 
 export const metadata = {
   title: "AI Builds — Jacob Jansson",
@@ -33,17 +33,7 @@ const methodPoints = [
   },
 ];
 
-type Status = "LIVE" | "PROTOTYPE" | "CONCEPT";
-
-const builds: {
-  name: string;
-  description: string;
-  tags: string[];
-  status: Status;
-  image: string;
-  liveUrl?: string;
-  beta?: boolean;
-}[] = [
+const builds: Build[] = [
   {
     name: "Flowscan — Web UX & accessibility analysis",
     description:
@@ -108,12 +98,6 @@ const builds: {
     liveUrl: "https://www.theclocktower.se",
   },
 ];
-
-const statusStyles: Record<Status, string> = {
-  LIVE: "bg-accent text-white",
-  PROTOTYPE: "bg-foreground text-background",
-  CONCEPT: "bg-[#f3f4f6] text-muted",
-};
 
 export default function AIBuildsPage() {
   return (
@@ -192,93 +176,11 @@ export default function AIBuildsPage() {
           </h2>
         </FadeIn>
         <div className="mt-12 grid gap-8 sm:grid-cols-2">
-          {builds.map((build) => {
-            const cardInner = (
-              <>
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#1a1a1a]">
-                  <Image
-                    src={build.image}
-                    alt={build.name}
-                    fill
-                    className="object-contain p-5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                  <div className="absolute right-3 top-3 flex flex-row-reverse gap-1.5">
-                    <span
-                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${statusStyles[build.status]}`}
-                    >
-                      {build.status}
-                    </span>
-                    {build.beta && (
-                      <span className="rounded-full border border-white/30 bg-black/40 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
-                        Beta
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
-                  <h3 className="text-[1.25rem] font-bold tracking-tight text-foreground">
-                    {build.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {build.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {build.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-[#f3f4f6] px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-muted"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Link label (only when liveUrl present) */}
-                  {build.liveUrl && (
-                    <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-medium text-accent transition-all duration-200 group-hover:gap-2 group-hover:text-accent-hover">
-                      {build.liveUrl.startsWith("/") ? "View case" : "View live"}
-                      <span aria-hidden="true">&rarr;</span>
-                    </span>
-                  )}
-                </div>
-              </>
-            );
-
-            const linkClasses =
-              "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
-            const staticClasses =
-              "group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-shadow duration-300 hover:shadow-lg";
-            const isInternal = build.liveUrl?.startsWith("/") ?? false;
-
-            return (
-              <FadeIn key={build.name}>
-                {build.liveUrl ? (
-                  isInternal ? (
-                    <Link href={build.liveUrl} className={linkClasses}>
-                      {cardInner}
-                    </Link>
-                  ) : (
-                    <a
-                      href={build.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={linkClasses}
-                    >
-                      {cardInner}
-                    </a>
-                  )
-                ) : (
-                  <article className={staticClasses}>{cardInner}</article>
-                )}
-              </FadeIn>
-            );
-          })}
+          {builds.map((build) => (
+            <FadeIn key={build.name}>
+              <AIBuildCard build={build} />
+            </FadeIn>
+          ))}
         </div>
       </section>
 
