@@ -87,6 +87,7 @@ const builds: Build[] = [
     tags: ["Public Sector", "IA", "Concept"],
     status: "CONCEPT",
     image: "/images/ai-builds/TLV.webp",
+    liveUrl: "https://jaken-ux.github.io/TLV/index.html",
   },
   {
     name: "Klocktornet — B2B Event Service",
