@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const navLinks: { label: string; href: string; external?: boolean }[] = [
+type NavLink = { label: string; href: string; external?: boolean };
+
+const navLinks: NavLink[] = [
   { label: "Case Studies", href: "/#work" },
   { label: "AI Builds", href: "/ai-builds" },
   { label: "Writing", href: "/writing" },
@@ -12,6 +14,39 @@ const navLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Contact", href: "/contact" },
   { label: "CV", href: "/cv/Jacob_Jansson_CV.pdf", external: true },
 ];
+
+// External links (CV PDF) and hash-only scroll anchors (Case Studies → /#work)
+// don't correspond to a route the user "is on", so they never get an active
+// state. Everything else matches exact path or as a prefix (future-proofs
+// nested routes like /ai-builds/some-build).
+function isActive(link: NavLink, pathname: string | null): boolean {
+  if (!pathname) return false;
+  if (link.external) return false;
+  if (link.href.includes("#")) return false;
+  return pathname === link.href || pathname.startsWith(link.href + "/");
+}
+
+// Nav label with a hidden bold ghost that reserves the semibold width. This
+// prevents horizontal layout-shift when the active state moves between links —
+// each link is always as wide as its bold version, so sibling links can't
+// wiggle sideways when one of them turns semibold.
+function NavLabel({ label, active }: { label: string; active: boolean }) {
+  return (
+    <span className="grid">
+      <span
+        aria-hidden="true"
+        className="invisible col-start-1 row-start-1 font-semibold"
+      >
+        {label}
+      </span>
+      <span
+        className={`col-start-1 row-start-1 ${active ? "font-semibold text-foreground" : ""}`}
+      >
+        {label}
+      </span>
+    </span>
+  );
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,28 +88,33 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden gap-8 md:flex" aria-label="Main navigation">
-          {navLinks.map((link) =>
-            link.external ? (
+          {navLinks.map((link) => {
+            const active = isActive(link, pathname);
+            const commonClasses =
+              "text-sm font-medium text-muted transition-colors hover:text-foreground";
+            return link.external ? (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+                className={commonClasses}
+                aria-current={active ? "page" : undefined}
               >
-                {link.label}
+                <NavLabel label={link.label} active={active} />
               </a>
             ) : (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleHashClick(e, link.href)}
-                className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+                className={commonClasses}
+                aria-current={active ? "page" : undefined}
               >
-                {link.label}
+                <NavLabel label={link.label} active={active} />
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
 
         {/* Mobile menu button */}
@@ -108,29 +148,37 @@ export default function Header() {
           className="border-t border-border px-6 pb-6 md:hidden"
           aria-label="Mobile navigation"
         >
-          {navLinks.map((link) =>
-            link.external ? (
+          {navLinks.map((link) => {
+            const active = isActive(link, pathname);
+            const commonClasses =
+              "block py-3 text-sm font-medium text-muted transition-colors hover:text-foreground";
+            return link.external ? (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
-                className="block py-3 text-sm font-medium text-muted transition-colors hover:text-foreground"
+                className={commonClasses}
+                aria-current={active ? "page" : undefined}
               >
-                {link.label}
+                <NavLabel label={link.label} active={active} />
               </a>
             ) : (
               <Link
                 key={link.label}
                 href={link.href}
-                onClick={(e) => { handleHashClick(e, link.href); setMenuOpen(false); }}
-                className="block py-3 text-sm font-medium text-muted transition-colors hover:text-foreground"
+                onClick={(e) => {
+                  handleHashClick(e, link.href);
+                  setMenuOpen(false);
+                }}
+                className={commonClasses}
+                aria-current={active ? "page" : undefined}
               >
-                {link.label}
+                <NavLabel label={link.label} active={active} />
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
       )}
     </header>
