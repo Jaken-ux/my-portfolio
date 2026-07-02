@@ -239,6 +239,15 @@ export default function SelectedWorkMorph({
 
     if (window.location.hash === "#work") {
       beginSkip();
+      // Next.js App Router doesn't reliably scroll to the hash on cross-page
+      // navigation (e.g. /ai-builds → /#work). Do it explicitly on mount.
+      // requestAnimationFrame lets the section layout settle before scrolling,
+      // and is a no-op if the browser already jumped there synchronously.
+      requestAnimationFrame(() => {
+        document
+          .getElementById("work")
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
     }
 
     const handler = () => beginSkip();

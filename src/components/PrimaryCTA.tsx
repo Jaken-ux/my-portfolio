@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 
 // --- Tuneables ---
@@ -55,6 +56,7 @@ export default function PrimaryCTA({
   const [hovered, setHovered] = useState(false);
   const observerRef = useRef<ResizeObserver | null>(null);
   const reduceMotion = useReducedMotion() ?? false;
+  const pathname = usePathname();
 
   // Callback ref: works uniformly for Link, <a> and <button>. Attaches a
   // ResizeObserver so the SVG stays in sync with the button's actual
@@ -89,6 +91,28 @@ export default function PrimaryCTA({
     if (e.pointerType === "mouse") setHovered(true);
   };
   const handlePointerLeave = () => setHovered(false);
+
+  // Same-page hash CTAs (e.g. View Work on / → /#work): Next.js App Router
+  // doesn't reliably scroll for hash-only Link navigation, especially when
+  // the URL already contains the hash. Take over: preventDefault, dispatch
+  // nav-skip-morph so SelectedWorkMorph doesn't flicker through its full
+  // flight, and manually scrollIntoView.
+  //
+  // Cross-page hash CTAs (e.g. from /ai-builds → /#work) are LEFT to Next
+  // to navigate normally; SelectedWorkMorph's mount effect on the target
+  // page reads window.location.hash and scrolls from there.
+  const handleInternalClick = (e: React.MouseEvent) => {
+    if (href?.includes("#")) {
+      const [rawPath, hash] = href.split("#");
+      const targetPath = rawPath || "/";
+      if (pathname === targetPath && hash) {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent("nav-skip-morph"));
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    onClick?.();
+  };
 
   const buttonClasses = [
     "relative inline-flex h-11 items-center rounded-full",
@@ -180,6 +204,7 @@ export default function PrimaryCTA({
         ref={setElement}
         href={href}
         className={buttonClasses}
+        onClick={handleInternalClick}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
       >
