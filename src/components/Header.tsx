@@ -10,7 +10,7 @@ const navLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Writing", href: "/writing" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "CV", href: "/cv/Jacob_Jansson_CV_UX_EN.pdf", external: true },
+  { label: "CV", href: "/cv/Jacob_Jansson_CV.pdf", external: true },
 ];
 
 export default function Header() {

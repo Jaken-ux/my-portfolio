@@ -9,7 +9,7 @@ const CV_OPTIONS = [
   { label: "English — UX focus", file: "Jacob_Jansson_CV_UX_EN.pdf" },
   { label: "English — AI builds focus", file: "Jacob_Jansson_CV_AI_EN.pdf" },
   { label: "Svenska — UX-fokus", file: "Jacob_Jansson_CV_UX.pdf" },
-  { label: "Svenska — AI-fokus", file: "Jacob_Jansson_CV_AI.pdf" },
+  { label: "Svenska — AI-fokus", file: "Jacob_Jansson_CV.pdf" },
 ];
 
 const DEFAULT_FILE = CV_OPTIONS[0].file;
