@@ -45,7 +45,7 @@ export default function Home() {
       {/* Featured Projects */}
       <section id="work" className="py-24">
         <FadeIn>
-          <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
             Featured Projects
           </h2>
         </FadeIn>
@@ -62,7 +62,7 @@ export default function Home() {
       {/* Writing teaser */}
       <section className="border-t border-border py-24">
         <FadeIn>
-          <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
             Writing
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">

@@ -8,6 +8,19 @@
   --color-accent-hover: #3b5de7;
   --color-border: #e5e7eb;
   --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+}
+
+/*
+ * Fraunces optical-sizing: browsers default to `auto` which reads the
+ * computed font-size and picks the matching opsz axis value. Making it
+ * explicit here so we don't rely on defaults and can tune later.
+ */
+@layer base {
+  h1,
+  h2 {
+    font-optical-sizing: auto;
+  }
 }
 
 body {

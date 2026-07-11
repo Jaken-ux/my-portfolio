@@ -37,7 +37,7 @@ export default function CyclingStatement() {
   if (reduceMotion) {
     return (
       <section className="border-t border-border py-32 sm:py-40">
-        <h2 className="text-[2.5rem] font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.25rem]">
+        <h2 className="text-[2.5rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
           I turn ideas into{" "}
           <span className="text-accent">{WORDS[WORDS.length - 1]}</span>.
         </h2>
@@ -49,7 +49,7 @@ export default function CyclingStatement() {
 
   return (
     <section className="border-t border-border py-32 sm:py-40">
-      <h2 className="text-[2.5rem] font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.25rem]">
+      <h2 className="text-[2.5rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
         I turn ideas into{" "}
         {/*
           Nested structure to keep baseline correct AND get a soft-edge mask:

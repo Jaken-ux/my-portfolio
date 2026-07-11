@@ -50,7 +50,7 @@ export default function AboutPage() {
           {/* Headline + intro */}
           <div className="flex flex-col justify-center">
             <FadeIn>
-              <h1 className="text-[2.25rem] font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-[2.75rem]">
+              <h1 className="text-[2.25rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-[2.75rem]">
                 About Jacob
               </h1>
               <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted">
@@ -114,7 +114,7 @@ export default function AboutPage() {
       {/* ── How I Work ── */}
       <section className="border-t border-border py-24">
         <FadeIn>
-          <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
+          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
             How I Work
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">

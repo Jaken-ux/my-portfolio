@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import MotionProvider from "@/components/MotionProvider";
 import "./globals.css";
@@ -7,6 +7,17 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+// Fraunces — display face for h1/h2. Variable font, non-italic only.
+// Additional axes (SOFT, WONK) are requested so we can tune them later
+// via font-variation-settings; opsz is enabled so the browser
+// automatically picks the right optical size based on rendered font-size.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["opsz", "SOFT", "WONK"],
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-portfolio-jaken-uxs-projects.vercel.app";
@@ -67,7 +78,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} antialiased`}>
         <MotionProvider>{children}</MotionProvider>
         <Analytics />
       </body>
