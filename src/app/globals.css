@@ -8,22 +8,7 @@
   --color-accent-hover: #3b5de7;
   --color-border: #e5e7eb;
   --font-sans: var(--font-inter);
-  --font-display: var(--font-fraunces);
-}
-
-/*
- * Fraunces: opsz auto (browser picks axis value from font-size), and
- * pin SOFT and WONK to 0 — WONK's wonky g/y/f/j alternates are what
- * read as "off" in body-adjacent display type. Not set via next/font
- * because next/font-google's `axes` only lists which axes are variable;
- * the actual values must be set in CSS via font-variation-settings.
- */
-@layer base {
-  h1,
-  h2 {
-    font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 0, "WONK" 0;
-  }
+  --font-display: var(--font-archivo);
 }
 
 body {

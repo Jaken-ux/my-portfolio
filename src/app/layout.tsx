@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import MotionProvider from "@/components/MotionProvider";
 import "./globals.css";
@@ -9,14 +9,12 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-// Fraunces — display face for h1/h2. Variable font, non-italic only.
-// Additional axes (SOFT, WONK) are requested so we can tune them later
-// via font-variation-settings; opsz is enabled so the browser
-// automatically picks the right optical size based on rendered font-size.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Archivo — grotesk display face for h1/h2. Variable font, non-italic only,
+// weight range 500-700. No opsz/SOFT/WONK axes — Archivo doesn't have them.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -78,7 +76,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${fraunces.variable} antialiased`}>
+      <body className={`${inter.variable} ${archivo.variable} antialiased`}>
         <MotionProvider>{children}</MotionProvider>
         <Analytics />
       </body>

@@ -78,7 +78,7 @@ export default function WritingPage() {
       {/* Hero */}
       <section className="pb-16 pt-28 sm:pt-36">
         <FadeIn>
-          <h1 className="max-w-3xl text-[2.5rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
+          <h1 className="max-w-3xl text-[2.5rem] font-display font-semibold leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
             Writing
           </h1>
         </FadeIn>
@@ -111,7 +111,7 @@ export default function WritingPage() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted">
                   {post.date} · {post.readTime}
                 </p>
-                <h2 className="mt-3 text-[1.35rem] font-display font-medium tracking-[-0.015em] text-foreground sm:text-[1.5rem]">
+                <h2 className="mt-3 text-[1.35rem] font-display font-semibold tracking-[-0.015em] text-foreground sm:text-[1.5rem]">
                   {post.title}
                 </h2>
                 <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">

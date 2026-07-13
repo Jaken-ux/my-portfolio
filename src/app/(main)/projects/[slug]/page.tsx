@@ -105,7 +105,7 @@ export default async function ProjectPage({
             ))}
           </div>
 
-          <h1 className="mt-5 text-[2.5rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl">
+          <h1 className="mt-5 text-[2.5rem] font-display font-semibold leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl">
             {project.title}
           </h1>
 
@@ -203,7 +203,7 @@ export default async function ProjectPage({
           <GalleryGrid images={galleryGroup(0)} />
           <FadeIn>
             <section className="mt-20">
-              <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+              <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
                 {project.problemPoints ? "The Situation" : "Problem"}
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
@@ -245,7 +245,7 @@ export default async function ProjectPage({
 
             {/* Text right */}
             <div>
-              <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+              <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
                 {project.problemPoints ? "The Challenge" : "Problem"}
               </h2>
               <p className="mt-5 text-base leading-[1.75] text-muted">
@@ -270,7 +270,7 @@ export default async function ProjectPage({
       ) : (
         <FadeIn>
           <section className="mt-24">
-            <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+            <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
               {project.problemPoints ? "The Challenge" : "Problem"}
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
@@ -299,7 +299,7 @@ export default async function ProjectPage({
       {project.approach && (
       <FadeIn>
         <section className="mt-20">
-          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+          <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
             {project.approachHeading ?? (project.features ? "What I Built" : "Approach")}
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
@@ -335,7 +335,7 @@ export default async function ProjectPage({
       {project.methodPoints && project.methodPoints.length > 0 && (
         <FadeIn>
           <section className="mt-20">
-            <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+            <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
               {project.methodPointsHeading ?? "Why this works"}
             </h2>
             <div className="mt-6 max-w-2xl space-y-6">
@@ -365,7 +365,7 @@ export default async function ProjectPage({
       {project.decisions && project.decisions.length > 0 && (
       <FadeIn>
         <section className="mt-20">
-          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+          <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
             {project.decisionsHeading ?? "Key Architectural Decisions"}
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -405,7 +405,7 @@ export default async function ProjectPage({
       {project.solution && (
         <FadeIn>
           <section className="mt-20">
-            <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+            <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
               Solution
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
@@ -419,7 +419,7 @@ export default async function ProjectPage({
       {project.extraSection && (
         <FadeIn>
           <section className="mt-20">
-            <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+            <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
               {project.extraSection.heading}
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-[1.75] text-muted">
@@ -452,7 +452,7 @@ export default async function ProjectPage({
             {/* Outcome */}
             {project.outcome && (
               <div>
-                <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+                <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
                   Outcome
                 </h2>
                 <p className="mt-5 text-base leading-[1.75] text-muted">
@@ -477,7 +477,7 @@ export default async function ProjectPage({
             {/* Learnings */}
             {project.learnings && (
               <div>
-                <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+                <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
                   What I Learned
                 </h2>
                 <p className="mt-5 text-base leading-[1.75] text-muted">

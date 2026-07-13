@@ -106,7 +106,7 @@ export default function AIBuildsPage() {
       {/* Hero */}
       <section className="pb-20 pt-28 sm:pt-36">
         <FadeIn>
-          <h1 className="max-w-3xl text-[2.5rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
+          <h1 className="max-w-3xl text-[2.5rem] font-display font-semibold leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
             Working prototypes, not mockups.
           </h1>
         </FadeIn>
@@ -149,7 +149,7 @@ export default function AIBuildsPage() {
       {/* How I work */}
       <section className="py-24">
         <FadeIn>
-          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+          <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
             How I work
           </h2>
         </FadeIn>
@@ -172,7 +172,7 @@ export default function AIBuildsPage() {
       {/* Builds */}
       <section id="builds" className="pb-24">
         <FadeIn>
-          <h2 className="text-[1.75rem] font-display font-medium tracking-[-0.015em] text-foreground">
+          <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
             Builds
           </h2>
         </FadeIn>
@@ -188,7 +188,7 @@ export default function AIBuildsPage() {
       {/* CTA */}
       <FadeIn>
         <section className="mb-24 rounded-2xl border border-border bg-white px-8 py-12 sm:px-12 sm:py-16">
-          <h2 className="max-w-2xl text-[2rem] font-display font-medium leading-[1.15] tracking-[-0.015em] text-foreground sm:text-[2.5rem]">
+          <h2 className="max-w-2xl text-[2rem] font-display font-semibold leading-[1.15] tracking-[-0.015em] text-foreground sm:text-[2.5rem]">
             Got an idea? Let’s prototype it.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">

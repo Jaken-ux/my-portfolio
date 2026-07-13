@@ -28,7 +28,7 @@ export default function HeroAndSelectedWork() {
       {/* Hero */}
       <section ref={heroRef} className="pb-20 pt-28 sm:pt-36">
         <FadeIn>
-          <h1 className="max-w-2xl text-[2.5rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
+          <h1 className="max-w-2xl text-[2.5rem] font-display font-semibold leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
             UX Designer who leads projects from insight to implementation.
           </h1>
         </FadeIn>

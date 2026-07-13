@@ -51,7 +51,7 @@ export default function ContactPage() {
         <div className="grid items-center gap-16 md:grid-cols-[1fr_320px] md:gap-20">
           {/* Left — text + contact info */}
           <div>
-            <h1 className="text-[2.25rem] font-display font-medium leading-[1.1] tracking-[-0.015em] text-foreground sm:text-[2.75rem]">
+            <h1 className="text-[2.25rem] font-display font-semibold leading-[1.1] tracking-[-0.015em] text-foreground sm:text-[2.75rem]">
               Get in touch
             </h1>
 
