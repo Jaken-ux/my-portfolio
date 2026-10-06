@@ -7,6 +7,13 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-06 — Ankaret /#work flyttat från Client work till "Products
+I've launched" (flygkortssektionen). "Case Studies", "View Work" och
+"Back to projects" landar nu på de lanserade produkterna. — Behålla det
+på Client work. — "Case Studies" omfattar nu båda sektionerna, och
+länken ska börja med de lanserade produkterna med kunduppdragen direkt
+under. Skip-morph behövde ingen ändring. — ce24b58**
+
 **2026-10-06 — Startsidans sektioner heter "Products I've launched"
 (flygkorten, med en rad om att båda är grundade och lanserade
 verksamheter) och "Client work" (kunduppdragen). — "Products I've built"

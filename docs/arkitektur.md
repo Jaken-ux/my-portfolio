@@ -110,10 +110,19 @@ eftersom Next.js App Router inte pålitligt scrollar till hashen vid
 cross-page-nav. (2) via en window CustomEvent `"nav-skip-morph"` som
 Header och PrimaryCTA dispatchar vid same-page hash-klick.
 
-Flaggen släpps när scrollYProgress ≥ 0.99 (destination nådd) eller efter
-en 1500 ms fallback-timeout. Under skip-fönstret ser användaren mjuk
-scroll till Selected Work-sektionen med kort som står stilla i sin
-row-pose.
+Ankaret `id="work"` sitter på flygkortssektionen ("Products I've
+launched") i `SelectedWorkMorph.tsx`. Header-länken "Case Studies",
+"View Work" i hero och "Back to projects" på case-sidorna går alla
+till `/#work`. Kunduppdragen ("Client work") ligger direkt under och har
+inget id. Sektionens 96 px padding i toppen fungerar som offset mot den
+fasta headern, så ingen scroll-margin behövs.
+
+Flaggen släpps när scrollYProgress ≥ 0.99, det vill säga när hero har
+scrollat förbi viewportens överkant, eller efter en 1500 ms
+fallback-timeout. Eftersom målet ligger under proof-raden nås 0.99 strax
+före landningen, när korten redan i praktiken står i row-pose. Under
+skip-fönstret ser användaren mjuk scroll till flygkortssektionen med kort
+som står stilla.
 
 ### Metadata-opacity: den kritiska motion v12-fällan
 
