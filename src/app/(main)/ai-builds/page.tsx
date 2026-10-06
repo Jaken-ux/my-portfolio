@@ -35,16 +35,6 @@ const methodPoints = [
 
 const builds: Build[] = [
   {
-    name: "Flowscan — Web UX & accessibility analysis",
-    description:
-      "A website analysis tool that runs several engines in parallel — performance, accessibility, computer vision and copy — and weighs the findings deterministically. AI surfaces the problems; code decides what matters most, the same way every time.",
-    tags: ["UX & Accessibility", "Multi-engine", "SaaS"],
-    status: "LIVE",
-    beta: true,
-    image: "/images/ai-builds/flowscan.webp",
-    liveUrl: "https://flowscan.se",
-  },
-  {
     name: "Theta Simplified",
     description:
       "Live analytics platform for the Theta blockchain ecosystem. Composite indexes, on-chain data, integrated AI assistant — all running on decentralized GPU infrastructure.",
