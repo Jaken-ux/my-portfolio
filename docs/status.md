@@ -55,10 +55,9 @@ Kvar före merge: granskning på preview-deployen.
 
 ## Kända skavanker och öppna trådar
 
-Tre kod-avvikelser är dokumenterade i docs/arkitektur.md under
+Två kod-avvikelser är dokumenterade i docs/arkitektur.md under
 "Avvikelser att veta om" och ska hanteras när tid finns:
-FadeIn-komponentens hantering av reduced-motion, Selected Work-sektionens
-h2 som missades vid font-migreringen till Archivo, och att Selected
+FadeIn-komponentens hantering av reduced-motion, och att Selected
 Work-korten är hårdkodade separat från src/data/projects.ts. Läs den
 sektionen för detaljer och tänkbara åtgärder — de återberättas inte här.
 

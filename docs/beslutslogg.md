@@ -7,6 +7,14 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-06 — Startsidans sektioner heter "Products I've launched"
+(flygkorten, med en rad om att båda är grundade och lanserade
+verksamheter) och "Client work" (kunduppdragen). — "Products I've built"
+(för generiskt, alla bygger med AI idag), samt roll som tagg på korten
+eller ändring i kortkomponenten. — Rollen och att produkterna är
+lanserade verksamheter ska synas för den som skummar, och en rubrik med
+en rad under löser det utan att röra kortens metadata-opacity. — 11aa637**
+
 **2026-10-06 — Positioneringen säger "13+ years in UX" (hero, proof-raden
 och metadata). — "15 years in UX". — 15 år är total arbetslivserfarenhet,
 inte UX-erfarenhet. — 069cb52, 5d8ca6b**

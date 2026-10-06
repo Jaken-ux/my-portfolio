@@ -255,12 +255,6 @@ CSS-transitions. En reduced-motion-användare får fortfarande
 till motion-baserad implementation eller wrappas med
 `motion-reduce:transition-none`.
 
-**Selected Work H2 missades i Archivo-swappet.** SelectedWorkMorph.tsx
-rad 288 har `<h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">`.
-Övriga h1 och h2 i (main) fick vid font-migreringen till Archivo klasserna
-`font-display font-semibold tracking-[-0.015em]`. Just denna missades och
-renderas fortfarande i Inter med font-bold.
-
 **Selected Work-korten är hårdkodade separat från övrig case-data.**
 Kortens innehåll (title, description, image, tags, href) ligger som
 en `cards`-array inuti `SelectedWorkMorph.tsx` (rad 23–40), inte i
