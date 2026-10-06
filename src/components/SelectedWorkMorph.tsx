@@ -99,7 +99,7 @@ function SelectedCard({
               fill
               priority={priority}
               sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 540px"
-              className="object-cover"
+              className="object-cover object-top"
             />
           </motion.div>
         </div>
