@@ -38,12 +38,11 @@ const cards: Card[] = [
     href: "/projects/flowscan",
   },
   {
-    title: "Theta Simplified",
-    description:
-      "Live analytics for the Theta blockchain — composite indexes, on-chain data, integrated AI.",
-    image: "/images/ai-builds/theta-wide.webp",
-    tags: ["AI Product", "Web3", "Self-hosted"],
-    href: "https://thetasimplified.com",
+    title: "Spelporten — Curated board game store",
+    description: "A curated board game store, designed, built and launched end to end, from brand to shipping.",
+    image: "/images/spelporten/spelporten-hero.webp",
+    tags: ["E-commerce", "Product Design", "Shopify"],
+    href: "/projects/spelporten",
   },
 ];
 
