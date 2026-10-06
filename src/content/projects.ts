@@ -159,6 +159,97 @@ export const projectContent: ProjectContent[] = [
     ],
   },
   {
+    slug: "spelporten",
+    title: "Spelporten — Curated Board Game Store",
+    intro:
+      "A curated Swedish board game store I designed, built and launched, from brand and information architecture to checkout, shipping and suppliers.",
+    role: "Founder & Product Designer",
+    timeline: "Aug 2026 – present",
+    tags: ["E-commerce", "Product Design", "Shopify"],
+    quickFacts: [
+      { label: "Role", value: "Founder — product, UX/UI, content and operations" },
+      { label: "Timeline", value: "Aug 2026 – present" },
+      { label: "Status", value: "Live since September 2026 — spelporten.se" },
+      { label: "Platform", value: "Shopify, with an extensively customised theme" },
+      { label: "Tools", value: "Claude Code, Cursor, Liquid, JavaScript, Git" },
+    ],
+    demoUrl: "https://spelporten.se",
+    demoLabel: "Visit Spelporten",
+    problem:
+      "Large board game stores help you navigate a huge catalogue. I wanted to build the opposite: a small shop that helps you choose. Board games are expensive, take an evening to try, and the right choice depends on who you play with and how much time you have. My hypothesis was that a curated range and honest guidance would make that choice easier than yet another catalogue with thousands of titles. It is a hypothesis, not a research finding, and the shop is built to test it.",
+    problemPoints: [
+      "Choosing a game depends on context: how many players, how much time, how experienced the group is",
+      "Publisher descriptions sell every game the same way and rarely say who a game is not for",
+      "A small shop cannot compete with the large Swedish retailers on range or price",
+      "Everything had to work within the real costs of a one-person business: purchasing, shipping and payment fees",
+    ],
+    approachHeading: "Designing for choosing",
+    approach:
+      "Every game in the shop is one I have played and can stand behind. The design work was about turning that editorial stance into structure: product data that answers the practical questions, writing that answers the personal ones, and ways into the range built around situations rather than categories.",
+    features: [
+      "Structured game data: player count, best player count, play time and complexity, shown the same way on every card and product page",
+      "Own reviews with a short verdict and a note on who the game is not for",
+      "\"Tonight we're playing\" — recommendations based on the kind of evening, not the product category",
+      "Seven game guides, built as a reusable content system, for situations like three players, families or starting a collection",
+      "Own photography, short films and Spotify playlists that show what a game feels like to play",
+    ],
+    approachExtra:
+      "I explored three visual directions early on: an editorial layout, an atmospheric evening mood and a structured almanac of game facts. The goal was the warmth of a board game magazine without making it harder to shop. An early dark, split hero felt too heavy for a store and was replaced by a lighter, calmer start page.",
+    decisionsHeading: "Key design decisions",
+    decisions: [
+      {
+        title: "One vocabulary for situations",
+        description:
+          "Situation-based recommendations started out hand-picked. I moved them to a shared set of keys stored on each product, the same keys that drive quick filtering in the game list, so new games show up in the right places without updating every page by hand.",
+      },
+      {
+        title: "No fake social proof",
+        description:
+          "Recommendations between games are editorial and labelled as such. Without real purchase data, the shop never claims that other customers also bought something.",
+      },
+      {
+        title: "Content that publishes without code",
+        description:
+          "Films, guides and recommendations are driven by product data. Adding a new film means filling in the product data and uploading a thumbnail. It then plays inline on the start page without any change to the theme.",
+      },
+      {
+        title: "Shopify for transactions, custom work for the experience",
+        description:
+          "I kept Shopify's catalogue, checkout and payments, and put the custom design work where it sets the shop apart: discovery, product presentation, films and guides. Building my own commerce engine would have meant owning payments and security for no visible gain to customers.",
+      },
+    ],
+    solution:
+      "I designed and built the shop myself on top of Shopify's Horizon theme, with custom Liquid sections, CSS, JavaScript and product metafields. Most of the code was written with AI assistants, mainly Claude Code and Cursor. I set the direction, reviewed every change against the rendered store, and kept a development theme and Git branches separate from the live shop. The AI also made mistakes I had to catch: a pricing spreadsheet with broken cell references and missing purchase discounts, a script that created duplicate guide entries, and a development theme that showed stale code after a branch switch. Each one became a rule: smaller changes, verification before publishing, and code that only checks kept separate from code that writes data.",
+    extraSection: {
+      heading: "Where logistics met UX",
+      body:
+        "The parts of a shop a designer rarely sees ended up shaping the experience the most. Shopify Basic does not let customers choose a pickup point in checkout, and the plans and apps that do cost more than a new shop can carry. So I launched with fixed-price delivery to pickup points from two carriers, Bring and DHL, and book shipments by hand. Packaging turned into a design problem once I learned that volumetric weight, not the weight of the game, decided the shipping class. The first real order made the economics concrete: after VAT on shipping, packaging, carrier and payment fees, an order of around 500 kronor left roughly 50. That changed how I think about the range. Small games work as add-ons, while larger ones have to carry the cost of an order.",
+    },
+    outcome:
+      "Spelporten launched on 25 September 2026 and runs as a real shop. Customers can order, pay and receive their games, and the first orders have been packed and shipped. The range is deliberately small, supported by seven guides and five films on YouTube. Reseller accounts are open with several Nordic and European distributors, while some larger distributors were not taking on new retailers. It is a young business, and it is too early to say whether the curated model works commercially.",
+    learnings: "Most of the hard problems sat outside the interface.",
+    learningPoints: [
+      "Order economics matter more than product margin. Every order has to carry its own shipping, packaging and fees",
+      "Platform limits are design constraints. Launching with a simpler checkout was better than letting an advanced shipping flow block the whole shop",
+      "A well-built store does not bring its own traffic. Technical SEO and solid product pages have not yet produced meaningful organic reach, and distribution is a problem of its own",
+      "Honest guidance includes telling people what not to buy",
+    ],
+    closingStatement:
+      "A large store helps you search. A small one should help you choose.",
+    endCta: {
+      text: "Curious how the shop was designed and built? Happy to walk through it.",
+      linkLabel: "Get in touch",
+      href: "/contact",
+    },
+    heroImage: "/images/spelporten/spelporten-hero.webp",
+    galleryImages: [
+      { src: "/images/spelporten/spelporten-om.webp", caption: "About Spelporten — the range is small because it is chosen", group: 0, width: 1115, height: 1040 },
+      { src: "/images/spelporten/spelporten-produktgrid.webp", caption: "Game list — structured facts, a short verdict and a \"Not for\" note on every game", group: 1, width: 1042, height: 1151 },
+      { src: "/images/spelporten/spelporten-metod.webp", caption: "How we assess games — a walkthrough, a verdict and a recommendation against", group: 1, width: 1086, height: 823 },
+      { src: "/images/spelporten/spelporten-filmer.webp", caption: "Films — short videos of games we have actually played, playing inline on the start page", group: 2, width: 1095, height: 703 },
+    ],
+  },
+  {
     slug: "husqvarna-dealer-portal",
     title: "Husqvarna Group — B2B Dealer Portal",
     intro: "Vision prototype via AI-assisted development",
