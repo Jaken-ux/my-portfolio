@@ -4,7 +4,7 @@ import ContactChannels, { type Channel } from "@/components/ContactChannels";
 
 export const metadata = {
   title: "Contact – Jacob Jansson",
-  description: "Get in touch with Jacob Jansson — UX Designer based in Sweden.",
+  description: "Get in touch with Jacob Jansson — Senior UX & Product Designer based in Stockholm.",
 };
 
 const contactChannels: Channel[] = [

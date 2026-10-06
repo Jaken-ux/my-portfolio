@@ -23,17 +23,17 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-portfolio-jaken-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Jacob Jansson — UX Designer",
+    default: "Jacob Jansson — Senior UX & Product Designer",
     template: "%s — Jacob Jansson",
   },
   description:
-    "UX Designer with 13+ years of experience in complex products, B2B systems, and UX strategy. Based in Gothenburg, Sweden.",
+    "Senior UX & Product Designer with 13+ years in UX. Research, interaction design and AI-assisted product development, from idea to launched product. Based in Stockholm, Sweden.",
   keywords: [
     "UX Designer",
     "Jacob Jansson",
     "UX Strategy",
     "Product Design",
-    "Gothenburg",
+    "Stockholm",
     "B2B",
     "Enterprise UX",
     "Interaction Design",
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Jacob Jansson — UX Designer",
-    title: "Jacob Jansson — UX Designer",
+    siteName: "Jacob Jansson — Senior UX & Product Designer",
+    title: "Jacob Jansson — Senior UX & Product Designer",
     description:
-      "UX Designer with 13+ years of experience in complex products, B2B systems, and UX strategy.",
+      "Senior UX & Product Designer with 13+ years in UX. Research, interaction design and AI-assisted product development, from idea to launched product. Based in Stockholm, Sweden.",
     images: [
       {
         url: "/images/about/profilbild.jpg",
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jacob Jansson — UX Designer",
+    title: "Jacob Jansson — Senior UX & Product Designer",
     description:
-      "UX Designer with 13+ years of experience in complex products, B2B systems, and UX strategy.",
+      "Senior UX & Product Designer with 13+ years in UX. Research, interaction design and AI-assisted product development, from idea to launched product. Based in Stockholm, Sweden.",
     images: ["/images/about/profilbild.jpg"],
   },
   robots: {
