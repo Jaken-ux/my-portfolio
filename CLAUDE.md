@@ -45,6 +45,10 @@ Läs dessa tre innan du rör kod. De är sanningen om projektet:
   transformerna är hårdkodade som aX/aY och bX/bY separat. Arrayen kan
   inte bara utökas — kräver refaktor.
 
+- **Skärmdumpar till case studies renderas med Playwright** (16:9,
+  deviceScaleFactor 2). Original sparas i `~/portfolio-originals/`,
+  aldrig i `public/` — allt i `public/` deployas.
+
 ## Arbetssätt
 
 En logisk ändring per commit. `git add` med explicita filnamn, aldrig

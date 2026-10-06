@@ -27,6 +27,11 @@ scroll-morfen får sitt DOM-mål via en ref.
 `/writing`) är server components med lokala klient-öar (`FadeIn`,
 `PrimaryCTA`, `AIBuildCard`, `CVDownload`).
 
+`SelectedCard` (hemsidans flygkort) renderar `<Link>` för interna href
+och `<a target="_blank">` för externa (http/https). `GalleryGrid` på
+`/projects/[slug]` låter en bild med `fullWidth: true` ta hela gridens
+bredd (`col-span-full`, `sizes="100vw"`).
+
 `(main)/template.tsx` wrappar varje rendering i en motion.div som gör
 en 200ms opacity-fade vid varje ruttbyte. Första mounten i en session
 skippas via en modul-scope-flagga `hasLoadedOnce`, så en cold visit

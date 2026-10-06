@@ -7,6 +7,32 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-06 — Positioneringen säger "13+ years in UX" (hero, proof-raden
+och metadata). — "15 years in UX". — 15 år är total arbetslivserfarenhet,
+inte UX-erfarenhet. — 069cb52, 5d8ca6b**
+
+**2026-10-06 — Hero- och kortbilder till case studies renderas med
+Playwright i exakt 16:9 och deviceScaleFactor 2. — object-top på
+case-sidans hero-bild. — object-top hade ändrat beskärningen av
+Chalmers-bilden (stående format); rätt bildformat löser problemet utan
+kodändring. object-top behölls på hemsidans kort. — 78e0851, bb11572**
+
+**2026-10-06 — Valfritt fält fullWidth på galleribilder; en sådan bild tar
+hela gridens bredd i GalleryGrid. Används för Flowscan-systemkartan. —
+Lägga systemkartan i en egen grupp (kräver ny gruppmekanik, grupp 0–3 är
+redan upptagna). — Diagram måste visas i full bredd för att gå att läsa.
+— 218b83f, 78f5a4a**
+
+**2026-10-06 — Interna kortlänkar på hemsidan öppnas i samma flik med
+etiketten "View case"; externa öppnas i ny flik med "View live". —
+Behålla "View live" och target="_blank" för alla kort. — "View live"
+lovar en live-produkt som en case-länk inte leder till. — 1249945**
+
+**2026-10-06 — Flowscan och Spelporten blir fullvärdiga case studies och
+tar hemsidans två flygkort. Theta Simplified finns kvar endast i AI
+Builds. — Behålla Theta på hemsidan. — De två lanserade produkterna är
+det starkaste beviset för produktdesignroller. — 1249945, 1b4893d**
+
 **2026-07-13 — Archivo som display-face för h1/h2 — Fraunces (som körde
 live 2026-07-11 till 2026-07-13) — Fraunces expressiva f/j-descendrar
 läste "off" även med WONK 0. Archivo är en grotesk utan wonk/soft/opsz-

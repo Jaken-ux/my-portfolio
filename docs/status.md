@@ -32,20 +32,26 @@ på /nav-v2 med tillhörande /start-v2 och /test) är bortstädad ur
 repot. Case-studyt på /projects/husqvarna-dealer-portal är orört och
 använder galleribilderna som ligger kvar i public/images/.
 
+Dokumentationen enligt 4-filsmodellen (README, docs/arkitektur.md,
+docs/beslutslogg.md, docs/status.md och projektets CLAUDE.md) är
+committad och live på main.
+
 ## Pågående arbete
 
-Dokumentationsrundan enligt 4-filsmodellen i ~/.claude/CLAUDE.md.
-Läget just nu:
+Branchen `feature/flowscan-case-spelporten` är pushad med Vercel
+preview men inte mergad till main. Den innehåller:
 
-docs/arkitektur.md — committad (`1907c39`).
-docs/beslutslogg.md — committad (`4209e33`).
-docs/status.md — denna fil, väntar på granskning och commit.
-projektets CLAUDE.md — inte påbörjad, nästa steg.
-README.md — utkast klart och parkerat i worktree, tas som sista steg
-när övriga dokumentationsfilerna finns att referera till.
+- Två nya case studies: /projects/flowscan (med systemkarta i full
+  bredd) och /projects/spelporten, båda med egna bilder i
+  public/images/flowscan/ och public/images/spelporten/.
+- Hemsidans två flygkort är Flowscan och Spelporten och länkar till
+  case-sidorna. Theta Simplified finns kvar i AI Builds; Flowscan är
+  borttagen därifrån.
+- Ny positionering: hero, proof-rad och metadata säger "Senior UX &
+  Product Designer", 13+ år i UX, Stockholm.
+- Sidtitlar utan dubbelt namn (About, Contact, Writing, AI Builds).
 
-Ingenting av det pågående är pushat än. Local main är före
-origin/main med två commits (docs-filerna).
+Kvar före merge: granskning på preview-deployen.
 
 ## Kända skavanker och öppna trådar
 
@@ -56,14 +62,14 @@ h2 som missades vid font-migreringen till Archivo, och att Selected
 Work-korten är hårdkodade separat från src/data/projects.ts. Läs den
 sektionen för detaljer och tänkbara åtgärder — de återberättas inte här.
 
-Utöver det finns två lösa trådar i själva repot:
+Utöver det finns dessa öppna trådar:
 
-README.md — utkast ligger som ocommittad modification i worktree.
-Ersätter create-next-app-mallen och pekar på docs/arkitektur.md,
-docs/beslutslogg.md och projektets CLAUDE.md. Tas som sista
-dokumentationssteg i denna runda, när CLAUDE.md finns att referera till.
+Flowscan-casets saknade sektion om rapportens designbeslut — väntar på
+underlag från Jacob.
 
-public/cv/Jacob_Jansson_CV.docx — untracked i git. Vercel deployar
+About-sidan nämner inte Flowscan eller Spelporten.
+
+public/cv/Jacob_Jansson_CV.docx — fortfarande untracked i git. Vercel deployar
 från git, så en untracked fil deployas inte alls — om något på sajten
 är tänkt att länka till just den .docx-filen är den länken trasig i
 produktion. Ingen kodreferens till .docx hittad idag; enda länkade CV:t
