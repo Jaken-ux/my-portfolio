@@ -5,6 +5,7 @@ export type GalleryImage = {
   width: number;
   height: number;
   video?: boolean;
+  fullWidth?: boolean;
 };
 
 export type ProjectContent = {
@@ -73,7 +74,7 @@ export const projectContent: ProjectContent[] = [
     approach:
       "Flowscan runs several analyses in parallel against a live site and merges them into one report. Deterministic tools do what they are reliable at, AI reviews what only a reader can judge, and code decides the order of everything.",
     features: [
-      "Five engines: Lighthouse, axe-core, keyboard and interaction tests, visual review and copy review",
+      "Engines chosen by analysis type: performance, code semantics, required legal notices, keyboard interaction and image text, plus AI review of visuals and copy",
       "Two-phase capture, so each page is analysed both before and after the cookie banner",
       "Up to three pages per run, executed in sequence to stay within memory limits",
       "A report in the browser and as a paginated PDF",
@@ -149,8 +150,9 @@ export const projectContent: ProjectContent[] = [
     },
     heroImage: "/images/ai-builds/flowscan.webp",
     galleryImages: [
+      { src: "/images/flowscan/systemkarta.webp", caption: "System map of the compliance analysis — the model judges severity, code ranks and scores, and no model sees the numbers", group: 1, width: 3200, height: 1920, fullWidth: true },
       { src: "/images/flowscan/landing-tjanster.webp", caption: "Analysis types — accessibility is assessed against WCAG 2.1 AA, EN 301 549, the EAA and Swedish law", group: 0, width: 1117, height: 606 },
-      { src: "/images/flowscan/landing-metod.webp", caption: "Engines and method — deterministic tools, AI review, then synthesis and ranking in code", group: 1, width: 1273, height: 653 },
+      { src: "/images/flowscan/landing-metod.webp", caption: "Engines and method — automated checks, AI review, then synthesis and ranking in code", group: 1, width: 1273, height: 653 },
       { src: "/images/flowscan/rapport-header.webp", caption: "Report header — each page is captured both before and after cookie consent", group: 1, width: 1286, height: 820 },
       { src: "/images/flowscan/fynd-lagkrav.webp", caption: "Prioritised findings — legal requirements and possible issues marked differently, each with evidence from the page", group: 2, width: 1391, height: 1118 },
       { src: "/images/flowscan/revisorns-sammanfattning.webp", caption: "Auditor's summary — written by AI, ranked deterministically", group: 2, width: 1391, height: 547 },
