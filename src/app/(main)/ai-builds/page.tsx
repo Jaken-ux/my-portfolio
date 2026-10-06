@@ -4,7 +4,7 @@ import PrimaryCTA from "@/components/PrimaryCTA";
 import AIBuildCard, { type Build } from "@/components/AIBuildCard";
 
 export const metadata = {
-  title: "AI Builds — Jacob Jansson",
+  title: "AI Builds",
   description:
     "Working prototypes, not mockups. AI-prototyped products built in days, not weeks.",
 };

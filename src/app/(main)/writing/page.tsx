@@ -1,7 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 
 export const metadata = {
-  title: "Writing — Jacob Jansson",
+  title: "Writing",
   description:
     "Builder logs on AI-augmented development, decentralized infrastructure, and the workflows emerging when one person with the right tools can build what used to take a team.",
 };

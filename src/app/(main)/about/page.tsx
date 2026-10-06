@@ -7,7 +7,7 @@ import PrimaryCTA from "@/components/PrimaryCTA";
 const workBlockNumbers = ["01", "02", "03"];
 
 export const metadata = {
-  title: "About – Jacob Jansson",
+  title: "About",
   description:
     "Senior UX & Product Designer with 13+ years of experience in B2B and public sector.",
 };

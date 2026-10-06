@@ -3,7 +3,7 @@ import FadeIn from "@/components/FadeIn";
 import ContactChannels, { type Channel } from "@/components/ContactChannels";
 
 export const metadata = {
-  title: "Contact – Jacob Jansson",
+  title: "Contact",
   description: "Get in touch with Jacob Jansson — Senior UX & Product Designer based in Stockholm.",
 };
 
