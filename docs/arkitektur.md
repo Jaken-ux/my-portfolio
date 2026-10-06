@@ -43,7 +43,7 @@ paint. Reduced-motion-användare får instant navigering utan animation.
 Detta är den mest icke-triviala mekanismen på sidan och den som styr
 flest arkitekturella val nedströms.
 
-Två case-kort (Flowscan och Theta Simplified) ligger i botten av home.
+Två case-kort (Flowscan och Spelporten) ligger i botten av home.
 På desktop utan reduced-motion börjar de i en tilted stack-pose som
 visuellt sitter uppe i hero-sektionen. När användaren scrollar flyger
 de ner till sin natural row-pose i sektionen längre ner på sidan.
