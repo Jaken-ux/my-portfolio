@@ -8,7 +8,7 @@ import PrimaryCTA from "@/components/PrimaryCTA";
 import SelectedWorkMorph from "@/components/SelectedWorkMorph";
 
 const highlights = [
-  "13+ years experience",
+  "13+ years in UX & design",
   "Complex products & B2B systems",
   "UX strategy & product thinking",
 ];
@@ -29,14 +29,15 @@ export default function HeroAndSelectedWork() {
       <section ref={heroRef} className="pb-20 pt-28 sm:pt-36">
         <FadeIn>
           <h1 className="max-w-2xl text-[2.5rem] font-display font-semibold leading-[1.1] tracking-[-0.015em] text-foreground sm:text-5xl md:text-[3.25rem]">
-            UX Designer who leads projects from insight to implementation.
+            Senior UX &amp; Product Designer. From research to real products.
           </h1>
         </FadeIn>
         <FadeIn>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            I help teams build clear, usable experiences through research,
-            structure, and AI-augmented prototyping — taking ideas from brief
-            to working product in days, not weeks.
+            I design complex digital experiences and build working products.
+            13 years in UX, from research and strategy to interaction design
+            and delivery, now combined with AI-assisted development to move
+            faster from idea to launch.
           </p>
         </FadeIn>
         <FadeIn>
