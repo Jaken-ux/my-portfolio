@@ -76,7 +76,6 @@ export const projectContent: ProjectContent[] = [
     features: [
       "Engines chosen by analysis type: performance, code semantics, required legal notices, keyboard interaction and image text, plus AI review of visuals and copy",
       "Two-phase capture, so each page is analysed both before and after the cookie banner",
-      "Up to three pages per run, executed in sequence to stay within memory limits",
       "A report in the browser and as a paginated PDF",
     ],
     approachExtra:
