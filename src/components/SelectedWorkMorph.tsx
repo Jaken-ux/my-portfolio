@@ -33,7 +33,7 @@ const cards: Card[] = [
     title: "Flowscan — Web UX & accessibility analysis",
     description:
       "Launched SaaS for UX and accessibility audits. AI surfaces problems, code decides what matters.",
-    image: "/images/ai-builds/flowscan.webp",
+    image: "/images/flowscan/flowscan-hero.webp",
     tags: ["UX & Accessibility", "Multi-engine", "SaaS"],
     href: "/projects/flowscan",
   },

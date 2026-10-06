@@ -147,7 +147,7 @@ export const projectContent: ProjectContent[] = [
       linkLabel: "Get in touch",
       href: "/contact",
     },
-    heroImage: "/images/ai-builds/flowscan.webp",
+    heroImage: "/images/flowscan/flowscan-hero.webp",
     galleryImages: [
       { src: "/images/flowscan/systemkarta.webp", caption: "System map of the compliance analysis — the model judges severity, code ranks and scores, and no model sees the numbers", group: 1, width: 3200, height: 1920, fullWidth: true },
       { src: "/images/flowscan/landing-tjanster.webp", caption: "Analysis types — accessibility is assessed against WCAG 2.1 AA, EN 301 549, the EAA and Swedish law", group: 0, width: 1117, height: 606 },
