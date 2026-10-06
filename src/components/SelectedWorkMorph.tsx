@@ -32,7 +32,7 @@ const cards: Card[] = [
   {
     title: "Flowscan — Web UX & accessibility analysis",
     description:
-      "Multi-engine UX & accessibility audit — AI surfaces problems, code decides what matters.",
+      "Launched SaaS for UX and accessibility audits. AI surfaces problems, code decides what matters.",
     image: "/images/ai-builds/flowscan.webp",
     tags: ["UX & Accessibility", "Multi-engine", "SaaS"],
     href: "/projects/flowscan",
@@ -313,9 +313,14 @@ export default function SelectedWorkMorph({
       className="relative z-10 border-t border-border py-24"
     >
       <FadeIn>
-        <h2 className="text-[1.75rem] font-bold tracking-tight text-foreground">
-          Selected Work
+        <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
+          Products I&apos;ve launched
         </h2>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+          I founded both and took them from idea to live business: product
+          design, AI-assisted development, hosting, payments and terms, and for
+          Spelporten also suppliers and shipping.
+        </p>
       </FadeIn>
       <div className="mt-12 grid gap-12 sm:grid-cols-2 sm:gap-8">
         <motion.div

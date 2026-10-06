@@ -42,11 +42,11 @@ export default function Home() {
         </section>
       </FadeIn>
 
-      {/* Featured Projects */}
+      {/* Client work */}
       <section id="work" className="py-24">
         <FadeIn>
           <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
-            Featured Projects
+            Client work
           </h2>
         </FadeIn>
 
