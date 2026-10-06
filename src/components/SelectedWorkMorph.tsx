@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -11,6 +12,13 @@ import {
   type MotionValue,
 } from "motion/react";
 import FadeIn from "@/components/FadeIn";
+
+// Flowscan now points at its internal case study page rather than the live
+// product. External URLs (http/https) still open in a new tab; internal paths
+// use Next's Link for client-side routing and MUST NOT get target="_blank".
+function isExternalHref(href: string): boolean {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
 
 type Card = {
   title: string;
@@ -27,7 +35,7 @@ const cards: Card[] = [
       "Multi-engine UX & accessibility audit — AI surfaces problems, code decides what matters.",
     image: "/images/ai-builds/flowscan.webp",
     tags: ["UX & Accessibility", "Multi-engine", "SaaS"],
-    href: "https://flowscan.se",
+    href: "/projects/flowscan",
   },
   {
     title: "Theta Simplified",
@@ -66,6 +74,7 @@ function SelectedCard({
 }) {
   const reduceMotion = useReducedMotion() ?? false;
   const [hovered, setHovered] = useState(false);
+  const external = isExternalHref(card.href);
 
   // pointerType === "mouse" filter prevents touch taps from sticking in hover.
   const handlePointerEnter = (e: React.PointerEvent) => {
@@ -73,15 +82,8 @@ function SelectedCard({
   };
   const handlePointerLeave = () => setHovered(false);
 
-  return (
-    <a
-      href={card.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block"
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
-    >
+  const cardInner = (
+    <>
       <BrowserFrame>
         {/* overflow-hidden on this container is critical — clips the scaled
             image so the browser-frame chrome (3 dots) stays still and only
@@ -124,7 +126,7 @@ function SelectedCard({
           ))}
         </div>
         <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-          View live
+          {external ? "View live" : "View case"}
           <motion.span
             aria-hidden="true"
             className="inline-block"
@@ -135,7 +137,34 @@ function SelectedCard({
           </motion.span>
         </span>
       </motion.div>
-    </a>
+    </>
+  );
+
+  // External URL → plain anchor opening in a new tab.
+  // Internal path → Next Link for client-side routing, no target="_blank".
+  if (external) {
+    return (
+      <a
+        href={card.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block"
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+      >
+        {cardInner}
+      </a>
+    );
+  }
+  return (
+    <Link
+      href={card.href}
+      className="group block"
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+    >
+      {cardInner}
+    </Link>
   );
 }
 

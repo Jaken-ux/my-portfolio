@@ -45,6 +45,120 @@ export type ProjectContent = {
 
 export const projectContent: ProjectContent[] = [
   {
+    slug: "flowscan",
+    title: "Flowscan — Web UX & Accessibility Analysis",
+    intro:
+      "A multi-engine UX and accessibility audit tool I designed, built and launched on my own, from first prototype to paid product.",
+    role: "Founder & Product Designer",
+    timeline: "May 2026 – present",
+    tags: ["SaaS", "Accessibility & Compliance", "AI Product"],
+    quickFacts: [
+      { label: "Role", value: "Founder — product design and development" },
+      { label: "Timeline", value: "May 2026 – present" },
+      { label: "Status", value: "Launched — sign-up and payment live" },
+      { label: "Stack", value: "Next.js, Playwright, axe-core, Lighthouse, Claude API, Postgres, Stripe" },
+      { label: "Method", value: "Built with Claude Code, documented as it grew" },
+    ],
+    demoUrl: "https://flowscan.se",
+    demoLabel: "Try Flowscan",
+    problem:
+      "A UX audit is mostly groundwork: run the tools, read the pages, compare what each tool found and decide what matters. I had done that by hand for years, and my judgment was rarely needed until the very end. Flowscan started as an attempt to turn that groundwork into a repeatable pipeline. Along the way the purpose sharpened. The European Accessibility Act took effect in June 2025, and accessibility moved from a quality question to a legal one.",
+    problemPoints: [
+      "Each tool sees one slice. Lighthouse scores performance and basics, axe-core finds rule violations, and neither reads a page the way a person does",
+      "A good score from one tool can sit right next to Level A failures that block real users",
+      "Teams facing the EAA need to know which issues are legal requirements and which are judgment calls, and most reports blur the two",
+      "The work is repetitive enough to automate, but only if the output can be trusted",
+    ],
+    approachHeading: "What I built",
+    approach:
+      "Flowscan runs several analyses in parallel against a live site and merges them into one report. Deterministic tools do what they are reliable at, AI reviews what only a reader can judge, and code decides the order of everything.",
+    features: [
+      "Five engines: Lighthouse, axe-core, keyboard and interaction tests, visual review and copy review",
+      "Two-phase capture, so each page is analysed both before and after the cookie banner",
+      "Up to three pages per run, executed in sequence to stay within memory limits",
+      "A report in the browser and as a paginated PDF",
+    ],
+    approachExtra:
+      "The hardest part was not the analysis itself. It was making the result honest: separating a legal requirement from a possible issue, and refusing to call a page fine just because nothing was found.",
+    methodPointsHeading: "How it was built",
+    methodPoints: [
+      {
+        lead: "I made the decisions, AI wrote most of the code.",
+        body:
+          "Flowscan is built with Claude Code. I owned the product, the architecture and every trade-off. The assistant implemented one logical change at a time, after a diagnosis of the current state rather than an assumption about it.",
+      },
+      {
+        lead: "Every claim is checked against the source.",
+        body:
+          "At one point an AI session reported work as finished that had never been done, including a commit that did not exist. I caught it, and it became a standing rule: verify against the files, never against a summary.",
+      },
+      {
+        lead: "The repository documents itself.",
+        body:
+          "An architecture document, a decision log and a list of known pitfalls live next to the code and are updated as the system changes. A mistake gets written down once, so neither I nor the AI repeats it, and someone else could take over the project.",
+      },
+      {
+        lead: "Payments were proven before they went live.",
+        body:
+          "The full flow from sign-up to checkout ran in Stripe's sandbox first. Going live meant pointing a verified system at real money, not running it for the first time.",
+      },
+    ],
+    decisionsHeading: "Principles built into the architecture",
+    decisions: [
+      {
+        title: "Code ranks, AI never does",
+        description:
+          "The language model assesses severity within fixed criteria. Scoring, prioritisation and ordering happen in deterministic code, so the same findings always produce the same ranking.",
+      },
+      {
+        title: "No findings is never a green light",
+        description:
+          "A verified Level A failure means a page most likely fails the requirement. Finding nothing does not mean it passes, and the report says so instead of implying a compliance it cannot prove.",
+      },
+      {
+        title: "Evidence comes from the page",
+        description:
+          "The evidence shown for each finding is read from what was captured on the site, never written by the model. The AI can misjudge how serious something is, but it cannot put words in the page's mouth.",
+      },
+      {
+        title: "Certainty is visible",
+        description:
+          "Legal requirements are marked as such, and judgment calls are marked as possible issues to verify. A reader can see at a glance how much weight each finding carries.",
+      },
+    ],
+    extraSection: {
+      heading: "What a single score hides",
+      body:
+        "In the report below, the overall quality score is 75 out of 100, which looks acceptable. The same report finds a verified Level A failure and a missing accessibility statement, so the site most likely does not meet the legal requirement. Flowscan keeps those answers apart: the score measures quality, and the conformance estimate is stated separately, as an estimate rather than a certificate.",
+    },
+    outcome:
+      "Flowscan is live at flowscan.se. Anyone can sign up, accept the terms, pay and run an analysis without talking to me. The terms and privacy policy have been reviewed by a lawyer, VAT is handled in Stripe, and acceptance of the terms is stored and checked server-side before any checkout.",
+    learnings: "Most of what I learned was not about code.",
+    learningPoints: [
+      "Technical maturity and business maturity are different milestones. Once the product worked, the hard part left was pricing, terms and selling",
+      "Work out your own unit cost before you set a price. Mine turned out ten times higher than my estimate, and the pricing model had to change",
+      "The most stubborn bugs sit where you have already looked. The PDF footer took nine attempts before the real cause turned up in the renderer",
+      "Building with AI takes the same discipline as building with a team: clear decisions, small steps and verification",
+    ],
+    closingStatement:
+      "A machine can judge how serious something is. It should never be the one deciding what matters most.",
+    endCta: {
+      text: "Curious how the pipeline or the principles work in practice? Happy to walk through it.",
+      linkLabel: "Get in touch",
+      href: "/contact",
+    },
+    heroImage: "/images/ai-builds/flowscan.webp",
+    galleryImages: [
+      { src: "/images/flowscan/landing-tjanster.webp", caption: "Analysis types — accessibility is assessed against WCAG 2.1 AA, EN 301 549, the EAA and Swedish law", group: 0, width: 1117, height: 606 },
+      { src: "/images/flowscan/landing-metod.webp", caption: "Engines and method — deterministic tools, AI review, then synthesis and ranking in code", group: 1, width: 1273, height: 653 },
+      { src: "/images/flowscan/rapport-header.webp", caption: "Report header — each page is captured both before and after cookie consent", group: 1, width: 1286, height: 820 },
+      { src: "/images/flowscan/fynd-lagkrav.webp", caption: "Prioritised findings — legal requirements and possible issues marked differently, each with evidence from the page", group: 2, width: 1391, height: 1118 },
+      { src: "/images/flowscan/revisorns-sammanfattning.webp", caption: "Auditor's summary — written by AI, ranked deterministically", group: 2, width: 1391, height: 547 },
+      { src: "/images/flowscan/rapport-oversikt.webp", caption: "Scorecard — health score and four category scores, weighted in code", group: 3, width: 1391, height: 395 },
+      { src: "/images/flowscan/rapport-konformans.webp", caption: "Conformance estimate — kept separate from the quality score and stated as an estimate", group: 3, width: 1391, height: 396 },
+    ],
+  },
+  {
     slug: "husqvarna-dealer-portal",
     title: "Husqvarna Group — B2B Dealer Portal",
     intro: "Vision prototype via AI-assisted development",
