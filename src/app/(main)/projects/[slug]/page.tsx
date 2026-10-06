@@ -29,13 +29,13 @@ export async function generateMetadata({
   };
 }
 
-function GalleryGrid({ images }: { images: { src: string; caption: string; width: number; height: number; video?: boolean }[] }) {
+function GalleryGrid({ images }: { images: { src: string; caption: string; width: number; height: number; video?: boolean; fullWidth?: boolean }[] }) {
   if (images.length === 0) return null;
   return (
     <FadeIn>
       <div className={`mt-14 grid gap-8 ${images.length > 1 ? "sm:grid-cols-2 items-start" : ""}`}>
         {images.map((img, i) => (
-          <figure key={i}>
+          <figure key={i} className={img.fullWidth ? "col-span-full" : undefined}>
             {img.video ? (
               <video
                 src={img.src}
@@ -52,7 +52,7 @@ function GalleryGrid({ images }: { images: { src: string; caption: string; width
                 width={img.width}
                 height={img.height}
                 className="img-shadow w-full rounded-xl"
-                sizes={images.length === 1 ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
+                sizes={images.length === 1 || img.fullWidth ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
               />
             )}
             <figcaption className="mt-3 text-xs italic text-muted">
