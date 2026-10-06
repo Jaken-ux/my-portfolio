@@ -309,6 +309,7 @@ export default function SelectedWorkMorph({
 
   return (
     <section
+      id="work"
       ref={sectionRef}
       className="relative z-10 border-t border-border py-24"
     >
