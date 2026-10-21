@@ -250,7 +250,7 @@ export const projectContent: ProjectContent[] = [
       href: "/contact",
     },
     relatedLink: {
-      label: "Behind the store: the purchasing agent",
+      label: "Behind the store: the purchasing tool",
       href: "/projects/spelporten-inkop",
     },
     heroImage: "/images/spelporten/spelporten-hero.webp",
@@ -349,7 +349,7 @@ export const projectContent: ProjectContent[] = [
     outcome:
       "The agent runs every Monday and costs a few kronor a week. It shapes every purchase and every price in the store, and its suggestions and my decisions are stored, so its record can be measured against sales once they come in.",
     learningPoints: [
-      "The tool can be ready before the business is. The biggest constraint on the store is traffic, and no purchasing agent solves that.",
+      "The tool can be ready before the business is. The biggest constraint on the store is traffic, and no purchasing tool solves that.",
       "Rules grow one problem at a time. Each fix was right, but together they need a clear owner, or they start to contradict each other.",
       "Real unit costs change the advice completely. An agent that does not know what a parcel costs will recommend prices that lose money.",
       "An agent becomes useful when it is honest about what it does not know.",
