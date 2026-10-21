@@ -30,7 +30,27 @@ scroll-morfen får sitt DOM-mål via en ref.
 `SelectedCard` (hemsidans flygkort) renderar `<Link>` för interna href
 och `<a target="_blank">` för externa (http/https). `GalleryGrid` på
 `/projects/[slug]` låter en bild med `fullWidth: true` ta hela gridens
-bredd (`col-span-full`, `sizes="100vw"`).
+bredd (`col-span-full`, `sizes="100vw"`). Två bilder i samma grupp utan
+`fullWidth` hamnar sida vid sida från `sm` och staplas på mobil (används
+för chattparet ljust/mörkt i Spelporten Inköp).
+
+Galleribilderna grupperas med `group` (0–4). Grupp 4 renderas direkt
+efter principerna (`decisions`). En galleribild kan ha en mobilvariant
+(`mobileSrc`, `mobileWidth`, `mobileHeight`): sidan renderar två
+`<Image>`, där huvudbilden är `hidden sm:block` och mobilvarianten
+`sm:hidden`. Det används för breda tabeller som är oläsbara nedskalade.
+Mobilvarianten är ett eget beskuret utsnitt, ingen CSS-beskärning.
+Valfria fält på ett case: `heroCaption` (bildtext under hero-bilden) och
+`relatedLink` (textlänk till ett relaterat case, före slut-CTA:n).
+Outcome/Learnings-sektionen renderas om `learnings` eller
+`learningPoints` finns; inledningstexten bara om `learnings` är satt.
+
+`AIBuildCard` har statusarna LIVE, IN USE (internt verktyg i drift,
+grön), PROTOTYPE och CONCEPT.
+
+Skärmdumpar med affärsdata (Spelporten Inköp) maskas innan de hamnar i
+repot. Originalen ligger utanför repot, och `.gitignore` spärrar
+`public/images/AI Agent/` om mappen återskapas.
 
 `(main)/template.tsx` wrappar varje rendering i en motion.div som gör
 en 200ms opacity-fade vid varje ruttbyte. Första mounten i en session

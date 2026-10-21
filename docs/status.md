@@ -36,22 +36,19 @@ Dokumentationen enligt 4-filsmodellen (README, docs/arkitektur.md,
 docs/beslutslogg.md, docs/status.md och projektets CLAUDE.md) är
 committad och live på main.
 
+## Senast tillagt
+
+- Case studies /projects/flowscan och /projects/spelporten ligger på
+  main. Hemsidans två flygkort är Flowscan och Spelporten.
+- Nytt case /projects/spelporten-inkop (AI-inköpsagent), länkat från
+  Spelporten-caset och först på /ai-builds med status IN USE. Bilderna
+  i public/images/spelporten-inkop/ är maskade; originalen ligger
+  utanför repot i ~/Desktop/portfolio-raw/spelporten-inkop/.
+- Positionering: "Senior UX & Product Designer", 13+ år i UX, Stockholm.
+
 ## Pågående arbete
 
-Branchen `feature/flowscan-case-spelporten` är pushad med Vercel
-preview men inte mergad till main. Den innehåller:
-
-- Två nya case studies: /projects/flowscan (med systemkarta i full
-  bredd) och /projects/spelporten, båda med egna bilder i
-  public/images/flowscan/ och public/images/spelporten/.
-- Hemsidans två flygkort är Flowscan och Spelporten och länkar till
-  case-sidorna. Theta Simplified finns kvar i AI Builds; Flowscan är
-  borttagen därifrån.
-- Ny positionering: hero, proof-rad och metadata säger "Senior UX &
-  Product Designer", 13+ år i UX, Stockholm.
-- Sidtitlar utan dubbelt namn (About, Contact, Writing, AI Builds).
-
-Kvar före merge: granskning på preview-deployen.
+Inget pågående branch-arbete.
 
 ## Kända skavanker och öppna trådar
 

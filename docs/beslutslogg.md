@@ -7,6 +7,31 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-21 — Spelporten Inköp-skärmdumparna maskas med täckande fält:
+pixlarna ersätts med bakgrundsfärg och en dämpad stapel. Inköpspriser,
+marginal (kr och %), budgetbelopp, kvartalsrabatt och ordernummer döljs;
+marknadspriser, mina priser och TB står kvar. Original ligger utanför
+repot. — Suddning. — Suddning av siffror kan delvis återskapas; ett
+täckande fält lämnar inga originalpixlar. — 28e906c, 596f721**
+
+**2026-10-21 — Breda tabeller får ett separat mobilutsnitt (`mobileSrc`)
+med kolumnerna Spel, Mitt pris, Marknad och TB ensam, cirka sex rader. —
+Visa hela tabellen nedskalad, eller låta den scrolla i sidled. —
+Nedskalad blir texten oläslig på mobil, och sidledsscroll bryter sidans
+layout. — 596f721**
+
+**2026-10-21 — Den ljusa och den mörka chatten visas som ett par (sida
+vid sida, staplade på mobil) med varsin bildtext, i stället för den
+ljusa chatten i full bredd. — Ett par med en gemensam bildtext (den
+ljusa chattens bildtext om verktygsanrop hade försvunnit), eller paret
+som eget block (samma bild två gånger). — 596f721**
+
+**2026-10-21 — Undvik/Följ upp-bilden placeras efter principerna via en
+ny galleri-grupp 4. Ny AI Builds-status IN USE för internt verktyg i
+drift, kortet först på sidan. — LIVE (verktyget är inte publikt) och
+att lägga bilden i en befintlig grupp (fel plats i berättelsen). —
+596f721**
+
 **2026-10-06 — Ankaret /#work flyttat från Client work till "Products
 I've launched" (flygkortssektionen). "Case Studies", "View Work" och
 "Back to projects" landar nu på de lanserade produkterna. — Behålla det

@@ -49,6 +49,13 @@ Läs dessa tre innan du rör kod. De är sanningen om projektet:
   deviceScaleFactor 2). Original sparas i `~/portfolio-originals/`,
   aldrig i `public/` — allt i `public/` deployas.
 
+- **Skärmdumpar med affärsdata maskas innan de kommer in i repot.**
+  Original ligger i `~/Desktop/portfolio-raw/`, aldrig i repot. Maska
+  med täckande fält (bakgrundsfärg plus en dämpad stapel), aldrig
+  suddning. På mörk bakgrund måste stapeln vara ljusare än bakgrunden,
+  annars syns den inte och maskningen ser ut som ett hål. Granska hela
+  den färdiga bilden, inte bara de maskade rutorna.
+
 ## Arbetssätt
 
 En logisk ändring per commit. `git add` med explicita filnamn, aldrig
