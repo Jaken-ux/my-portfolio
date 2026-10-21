@@ -26,6 +26,13 @@ export async function generateMetadata({
       description: project.intro,
       ...(ogImage ? { images: [{ url: ogImage }] } : {}),
     },
+    // Without its own twitter block, the page inherits the site-wide one from the root layout.
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — Jacob Jansson`,
+      description: project.intro,
+      ...(ogImage ? { images: [ogImage] } : {}),
+    },
   };
 }
 

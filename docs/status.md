@@ -60,6 +60,12 @@ sektionen för detaljer och tänkbara åtgärder — de återberättas inte här
 
 Utöver det finns dessa öppna trådar:
 
+Delningsbilderna (og:image och twitter:image) är trasiga på hela
+sajten. `metadataBase` faller tillbaka på
+my-portfolio-jaken-uxs-projects.vercel.app (src/app/layout.tsx:21)
+eftersom NEXT_PUBLIC_SITE_URL inte är satt i Vercel, och den domänen
+svarar DEPLOYMENT_NOT_FOUND. Upptäckt 2026-10-21, väntar på beslut.
+
 Flowscan-casets saknade sektion om rapportens designbeslut — väntar på
 underlag från Jacob.
 

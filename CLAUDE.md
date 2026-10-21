@@ -49,6 +49,11 @@ Läs dessa tre innan du rör kod. De är sanningen om projektet:
   deviceScaleFactor 2). Original sparas i `~/portfolio-originals/`,
   aldrig i `public/` — allt i `public/` deployas.
 
+- **Next.js-metadata ärvs per nyckel, inte per fält.** Sätter en sida
+  `openGraph` men inte `twitter` ärver den hela root-layoutens
+  `twitter`-block (sajtens text och profilbild). Sätt båda i
+  `generateMetadata`, med `card` — ett eget block ersätter förälderns helt.
+
 - **Skärmdumpar med affärsdata maskas innan de kommer in i repot.**
   Original ligger i `~/Desktop/portfolio-raw/`, aldrig i repot. Maska
   med täckande fält (bakgrundsfärg plus en dämpad stapel), aldrig
