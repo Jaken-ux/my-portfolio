@@ -54,7 +54,9 @@ Läs dessa tre innan du rör kod. De är sanningen om projektet:
   med täckande fält (bakgrundsfärg plus en dämpad stapel), aldrig
   suddning. På mörk bakgrund måste stapeln vara ljusare än bakgrunden,
   annars syns den inte och maskningen ser ut som ett hål. Granska hela
-  den färdiga bilden, inte bara de maskade rutorna.
+  den färdiga bilden, inte bara de maskade rutorna. macOS-skärmdumpar
+  av ett fönster kan ha en 1 px mörk kantlinje: mät alla fyra kanter
+  och beskär bort den innan publicering.
 
 ## Arbetssätt
 

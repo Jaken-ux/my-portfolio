@@ -7,6 +7,13 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-21 — Skärmdumparnas 1 px mörka kantlinje till vänster beskärs
+bort (butiken-idag, pa-vag, oversikt, chatt, chatt-dark). Granskat och
+lämnat: chattarnas nedersta rader är inmatningsfältets skugga och
+pa-vag-mobile slutar på en tabellradslinje, båda är innehåll och inte
+kant. — Beskära flera px för säkerhets skull. — Bara det som behövs;
+mätt per kant och bild. — se commit "Trim screenshot edge line"**
+
 **2026-10-21 — Spelporten Inköp-skärmdumparna maskas med täckande fält:
 pixlarna ersätts med bakgrundsfärg och en dämpad stapel. Inköpspriser,
 marginal (kr och %), budgetbelopp, kvartalsrabatt och ordernummer döljs;
