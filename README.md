@@ -30,8 +30,9 @@ npm run lint       # eslint
 One optional variable, with a working fallback:
 
 - `NEXT_PUBLIC_SITE_URL` — used for `metadata`, `robots.ts`, and
-  `sitemap.ts` to produce absolute URLs. Falls back to the Vercel preview
-  URL if unset.
+  `sitemap.ts` to produce absolute URLs (og/twitter images, sitemap,
+  robots). Falls back to the production URL `https://jacobjansson.vercel.app`
+  if unset, which is the case on Vercel today.
 
 No secrets, no database, no external APIs.
 

@@ -7,6 +7,15 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-21 — Reservadressen för sajtens URL (layout.tsx, robots.ts,
+sitemap.ts) är nu https://jacobjansson.vercel.app. Den gamla,
+my-portfolio-jaken-uxs-projects.vercel.app, svarade
+DEPLOYMENT_NOT_FOUND, så alla delningsbilder, sitemapen och robots.txt
+pekade på en död domän. — Sätta NEXT_PUBLIC_SITE_URL i Vercel. — En
+rad i koden, verifierbar i git, och ingen ändring i produktionens
+konfiguration. Variabeln går fortfarande att sätta och vinner då. —
+se commit "Point site URL fallback at the production domain"**
+
 **2026-10-21 — Skärmdumparnas 1 px mörka kantlinje till vänster beskärs
 bort (butiken-idag, pa-vag, oversikt, chatt, chatt-dark). Granskat och
 lämnat: chattarnas nedersta rader är inmatningsfältets skugga och

@@ -18,7 +18,7 @@ const archivo = Archivo({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://my-portfolio-jaken-uxs-projects.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jacobjansson.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

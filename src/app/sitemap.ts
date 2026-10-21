@@ -4,7 +4,7 @@ import { projectContent } from "@/content/projects";
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://my-portfolio-jaken-uxs-projects.vercel.app";
+    "https://jacobjansson.vercel.app";
 
   const projectUrls = projectContent.map((p) => ({
     url: `${siteUrl}/projects/${p.slug}`,
