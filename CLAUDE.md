@@ -40,6 +40,12 @@ Läs dessa tre innan du rör kod. De är sanningen om projektet:
   på Vercel preview-deploy istället. Preview-miljön är sanningen, inte
   lokal dev.
 
+- **En produktionsdeploy kan ta över 10 minuter innan den går live**
+  (01643c0: push 17:06, live 17:18). Visar produktion gammalt innehåll,
+  titta på `age`-huvudet: en färsk deploy tömmer CDN-cachen, så en hög
+  ålder betyder att den nya versionen inte är live än. Dra ingen
+  slutsats om koden eller konfigurationen förrän det är utrett.
+
 - **Selected Work-korten är hårdkodade för exakt två.** Kort-arrayen
   ligger i `SelectedWorkMorph.tsx` (inte i `src/data/projects.ts`) och
   transformerna är hårdkodade som aX/aY och bX/bY separat. Arrayen kan

@@ -7,6 +7,12 @@ Format per post: datum — beslut — förkastat alternativ — skäl — commit
 
 ---
 
+**2026-10-21 — Verifierat i Vercel: projektet har inga miljövariabler,
+NEXT_PUBLIC_SITE_URL är inte satt. Påståendet i posten nedan (och i
+README och commit 01643c0) stämmer. Efter publiceringen pekar og:image,
+twitter:image, sitemap och robots.txt på jacobjansson.vercel.app och
+bilderna svarar 200 (startsidan, spelporten-inkop, flowscan). — 01643c0**
+
 **2026-10-21 — Reservadressen för sajtens URL (layout.tsx, robots.ts,
 sitemap.ts) är nu https://jacobjansson.vercel.app. Den gamla,
 my-portfolio-jaken-uxs-projects.vercel.app, svarade
