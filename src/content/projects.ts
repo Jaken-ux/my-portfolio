@@ -6,6 +6,10 @@ export type GalleryImage = {
   height: number;
   video?: boolean;
   fullWidth?: boolean;
+  // Optional narrower image shown below the sm breakpoint (e.g. a cropped table).
+  mobileSrc?: string;
+  mobileWidth?: number;
+  mobileHeight?: number;
 };
 
 export type ProjectContent = {
@@ -37,6 +41,8 @@ export type ProjectContent = {
   demoLabel?: string;
   demoPassword?: string;
   endCta?: { text: string; linkLabel: string; href: string };
+  relatedLink?: { label: string; href: string };
+  heroCaption?: string;
   quickFacts?: { label: string; value: string }[];
   heroImage: string;
   heroImageType?: "photo" | "logo";
@@ -242,12 +248,127 @@ export const projectContent: ProjectContent[] = [
       linkLabel: "Get in touch",
       href: "/contact",
     },
+    relatedLink: {
+      label: "Behind the store: the purchasing agent",
+      href: "/projects/spelporten-inkop",
+    },
     heroImage: "/images/spelporten/spelporten-hero.webp",
     galleryImages: [
       { src: "/images/spelporten/spelporten-om.webp", caption: "About Spelporten — the range is small because it is chosen", group: 0, width: 1115, height: 1040 },
       { src: "/images/spelporten/spelporten-produktgrid.webp", caption: "Game list — structured facts, a short verdict and a \"Not for\" note on every game", group: 1, width: 1042, height: 1151 },
       { src: "/images/spelporten/spelporten-metod.webp", caption: "How we assess games — a walkthrough, a verdict and a recommendation against", group: 1, width: 1086, height: 823 },
       { src: "/images/spelporten/spelporten-filmer.webp", caption: "Films — short videos of games we have actually played, playing inline on the start page", group: 2, width: 1095, height: 703 },
+    ],
+  },
+  {
+    slug: "spelporten-inkop",
+    title: "Spelporten Inköp — AI Purchasing Agent",
+    intro:
+      "An AI agent and decision dashboard I built for my own board game store, to decide what to buy, where to buy it and what to charge.",
+    role: "Founder — product design and development",
+    timeline: "October 2026 – present",
+    tags: ["AI Agent", "Decision Support", "E-commerce"],
+    quickFacts: [
+      { label: "Role", value: "Founder — product design and development" },
+      { label: "Timeline", value: "October 2026 – present" },
+      { label: "Status", value: "In weekly use, internal tool" },
+      { label: "Stack", value: "Python, Playwright, SQLite, Claude API (Sonnet, Haiku), FastAPI, React, Vite" },
+      { label: "Method", value: "Built with Claude Code, documented as it grew" },
+    ],
+    problem:
+      "Spelporten buys from three distributors. Their B2B portals list tens of thousands of products, alphabetically by publisher, with no way to see what is new, what is about to sell out, or what is worth stocking. I kept a spreadsheet. It grew large, hard to read, and still did not tell me the one thing that mattered: whether I would make money on a game at a price customers would actually pay.",
+    problemPoints: [
+      "Each portal shows one slice. None of them shows what competitors charge or have in stock.",
+      "Margin depends on more than purchase price: shipping subsidy, packaging and card fees decide whether a sale is profitable at all.",
+      "A small store cannot compete on price with the big chains, so it has to find games where it has an edge.",
+      "The decisions recur every week, and a wrong one ties up capital a small business does not have.",
+    ],
+    approachHeading: "What I built",
+    approach:
+      "A weekly pipeline collects the catalogs, my orders and competitor prices into a local database. A pricing engine calculates margin and contribution per game with my real costs. An agent on top of that answers questions in chat and writes a weekly brief of what to buy. A local web app shows the store as it is today and what is on its way.",
+    approachExtra:
+      "The hard part was not the agent. It was making sure the numbers it reasons about are true, and that it says \"I don't know\" instead of guessing.",
+    features: [
+      "Collection from three distributors and three competing stores, every Monday at 06:00",
+      "Price recommendations based on the market, with a floor that protects contribution per order",
+      "Role labels per game: door opener, margin game, add-on, edge game, core range",
+      "Chat with visible tool calls, and a weekly brief I approve or reject with one click",
+    ],
+    methodPointsHeading: "How it was built",
+    methodPoints: [
+      {
+        lead: "Code calculates, the agent judges.",
+        body:
+          "Early tests showed the agent sometimes did its own arithmetic, and got it subtly wrong. A stricter instruction did not stop it. Moving every calculation into the tools did. The agent now receives finished numbers and may only explain them.",
+      },
+      {
+        lead: "Facts are fields, not prose.",
+        body:
+          "The agent once claimed a game was in my order when it was not. Since then, facts about orders and stock come as structured fields filled in by code, and a check rejects any brief whose text contradicts them.",
+      },
+      {
+        lead: "It can read everything and change nothing.",
+        body:
+          "The agent can see my orders at the distributors, but it cannot place or cancel one. A guard at network level blocks every write request, and a test proves that clicking a cancel button is stopped before it leaves the browser.",
+      },
+      {
+        lead: "Evaluations, kept affordable.",
+        body:
+          "An evaluation suite checks that every number in an answer can be traced to a tool. After a weekend of building cost more in evaluations than in use, I added recorded runs that replay for free after code changes, and a monthly budget for paid ones.",
+      },
+    ],
+    decisionsHeading: "Principles built into the architecture",
+    decisions: [
+      {
+        title: "The agent never does the maths",
+        description:
+          "Margins, prices and contribution are calculated in code. The agent chooses and explains, but it never produces a number of its own.",
+      },
+      {
+        title: "No price below what pays for the parcel",
+        description:
+          "The recommended price never goes below what covers shipping, packaging and fees on a single order. Matching the cheapest store is not a goal in itself.",
+      },
+      {
+        title: "Uncertainty is visible",
+        description:
+          "A competitor match on name alone is marked as uncertain. A missing price is shown as missing, never estimated without saying so.",
+      },
+      {
+        title: "Read everything, change nothing",
+        description:
+          "The database is opened read-only for the agent, and the distributors are protected by a write guard. The only thing the app writes is my own decisions.",
+      },
+    ],
+    extraSection: {
+      heading: "What a spreadsheet hid",
+      body:
+        "My first order for the store looked reasonable in a spreadsheet. With real unit costs, several of the games left between 5 and 25 kronor per order sold on its own. One suggested price cut would have turned a sale into a loss. The next order, chosen with the tool, averages close to twice the contribution per box, and every game in it is profitable as a single order.",
+    },
+    outcome:
+      "The agent runs every Monday and costs a few kronor a week. It shapes every purchase and every price in the store, and its suggestions and my decisions are stored, so its record can be measured against sales once they come in.",
+    learningPoints: [
+      "The tool can be ready before the business is. The biggest constraint on the store is traffic, and no purchasing agent solves that.",
+      "Rules grow one problem at a time. Each fix was right, but together they need a clear owner, or they start to contradict each other.",
+      "Real unit costs change the advice completely. An agent that does not know what a parcel costs will recommend prices that lose money.",
+      "An agent becomes useful when it is honest about what it does not know.",
+    ],
+    closingStatement:
+      "An agent should explain the numbers, never invent them.",
+    endCta: {
+      text: "Curious how the agent and the pricing engine work together? Happy to walk through it.",
+      linkLabel: "Get in touch",
+      href: "/contact",
+    },
+    heroImage: "/images/spelporten-inkop/oversikt.webp",
+    heroCaption: "The overview — supplier status, deadlines and what needs attention, on one screen.",
+    galleryImages: [
+      { src: "/images/spelporten-inkop/chatt.webp", caption: "The agent answers with tool calls visible, so every number can be traced to its source.", group: 1, width: 1687, height: 1316 },
+      { src: "/images/spelporten-inkop/chatt-dark.webp", caption: "Designed for daily use: the app follows the system theme, light or dark.", group: 1, width: 1687, height: 1316 },
+      { src: "/images/spelporten-inkop/butiken-idag.webp", caption: "The store today: price, market range, contribution per order and a role for each game.", group: 1, width: 1687, height: 759, fullWidth: true, mobileSrc: "/images/spelporten-inkop/butiken-idag-mobile.webp", mobileWidth: 382, mobileHeight: 276 },
+      { src: "/images/spelporten-inkop/pa-vag.webp", caption: "What is on its way, in the same view, before it arrives.", group: 1, width: 1687, height: 1098, fullWidth: true, mobileSrc: "/images/spelporten-inkop/pa-vag-mobile.webp", mobileWidth: 427, mobileHeight: 330 },
+      { src: "/images/spelporten-inkop/undvik.webp", caption: "The agent also says what not to buy, and flags an uncertain match instead of guessing.", group: 4, width: 1090, height: 802 },
+      { src: "/images/spelporten-inkop/veckobrief.webp", caption: "The weekly brief — suggestions grouped by purpose, each with a reference price, a reason and a risk.", group: 2, width: 1580, height: 1317 },
     ],
   },
   {

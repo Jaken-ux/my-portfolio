@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 
-type Status = "LIVE" | "PROTOTYPE" | "CONCEPT";
+type Status = "LIVE" | "IN USE" | "PROTOTYPE" | "CONCEPT";
 
 export type Build = {
   name: string;
@@ -19,6 +19,7 @@ export type Build = {
 
 const statusStyles: Record<Status, string> = {
   LIVE: "bg-accent text-white",
+  "IN USE": "bg-[#10b981] text-white",
   PROTOTYPE: "bg-foreground text-background",
   CONCEPT: "bg-[#f3f4f6] text-muted",
 };

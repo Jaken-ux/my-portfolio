@@ -44,3 +44,8 @@ next-env.d.ts
 /public/cv/nya cvn/
 /public/cv/nya cvn.zip
 ~$*
+
+# Originalunderlag med känsliga inköpspriser — får aldrig committas.
+# Original ligger utanför repot i ~/Desktop/portfolio-raw/.
+/public/images/AI Agent/
+/public/images/AI agent/

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { projectContent } from "@/content/projects";
+import { projectContent, type GalleryImage } from "@/content/projects";
 import FadeIn from "@/components/FadeIn";
 import PrimaryCTA from "@/components/PrimaryCTA";
 
@@ -29,7 +29,7 @@ export async function generateMetadata({
   };
 }
 
-function GalleryGrid({ images }: { images: { src: string; caption: string; width: number; height: number; video?: boolean; fullWidth?: boolean }[] }) {
+function GalleryGrid({ images }: { images: GalleryImage[] }) {
   if (images.length === 0) return null;
   return (
     <FadeIn>
@@ -46,14 +46,27 @@ function GalleryGrid({ images }: { images: { src: string; caption: string; width
                 className="img-shadow w-full rounded-xl"
               />
             ) : (
-              <Image
-                src={img.src}
-                alt={img.caption}
-                width={img.width}
-                height={img.height}
-                className="img-shadow w-full rounded-xl"
-                sizes={images.length === 1 || img.fullWidth ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
-              />
+              <>
+                <Image
+                  src={img.src}
+                  alt={img.caption}
+                  width={img.width}
+                  height={img.height}
+                  className={`img-shadow w-full rounded-xl ${img.mobileSrc ? "hidden sm:block" : ""}`}
+                  sizes={images.length === 1 || img.fullWidth ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
+                />
+                {img.mobileSrc && img.mobileWidth && img.mobileHeight && (
+                  <Image
+                    src={img.mobileSrc}
+                    alt={img.caption}
+                    width={img.mobileWidth}
+                    height={img.mobileHeight}
+                    className="img-shadow w-full rounded-xl sm:hidden"
+                    style={{ maxWidth: img.mobileWidth }}
+                    sizes="100vw"
+                  />
+                )}
+              </>
             )}
             <figcaption className="mt-3 text-xs italic text-muted">
               {img.caption}
@@ -76,6 +89,7 @@ export default async function ProjectPage({
   if (!project) notFound();
 
   const hasGroups = project.galleryImages.some((img) => img.group != null);
+  const hasLearnings = Boolean(project.learnings || project.learningPoints?.length);
   const galleryGroup = (g: number) =>
     project.galleryImages.filter((img) => img.group === g);
   const ungrouped = project.galleryImages.filter((img) => img.group == null);
@@ -192,6 +206,9 @@ export default async function ProjectPage({
               priority
             />
           </div>
+          {project.heroCaption && (
+            <p className="mt-3 text-xs italic text-muted">{project.heroCaption}</p>
+          )}
         </FadeIn>
       ) : null}
 
@@ -401,6 +418,11 @@ export default async function ProjectPage({
       </FadeIn>
       )}
 
+      {/* Gallery group 4 (directly after Key Decisions) */}
+      {hasGroups && galleryGroup(4).length > 0 && (
+        <GalleryGrid images={galleryGroup(4)} />
+      )}
+
       {/* Solution (only if present) */}
       {project.solution && (
         <FadeIn>
@@ -442,11 +464,11 @@ export default async function ProjectPage({
       )}
 
       {/* Outcome + Learnings — two-column layout, one-column if only one is present */}
-      {(project.outcome || project.learnings) && (
+      {(project.outcome || hasLearnings) && (
         <FadeIn>
           <section
             className={`mt-20 grid gap-12 border-t border-border pt-16 ${
-              project.outcome && project.learnings ? "md:grid-cols-2 md:gap-16" : ""
+              project.outcome && hasLearnings ? "md:grid-cols-2 md:gap-16" : ""
             }`}
           >
             {/* Outcome */}
@@ -475,14 +497,16 @@ export default async function ProjectPage({
             )}
 
             {/* Learnings */}
-            {project.learnings && (
+            {hasLearnings && (
               <div>
                 <h2 className="text-[1.75rem] font-display font-semibold tracking-[-0.015em] text-foreground">
                   What I Learned
                 </h2>
-                <p className="mt-5 text-base leading-[1.75] text-muted">
-                  {project.learnings}
-                </p>
+                {project.learnings && (
+                  <p className="mt-5 text-base leading-[1.75] text-muted">
+                    {project.learnings}
+                  </p>
+                )}
                 {project.learningPoints && (
                   <ul className="mt-5 space-y-3">
                     {project.learningPoints.map((point, i) => (
@@ -510,6 +534,21 @@ export default async function ProjectPage({
               &ldquo;{project.closingStatement}&rdquo;
             </p>
           </section>
+        </FadeIn>
+      )}
+
+      {/* Related case link (optional) */}
+      {project.relatedLink && (
+        <FadeIn>
+          <div className="mt-20">
+            <Link
+              href={project.relatedLink.href}
+              className="inline-flex items-center gap-1 text-base font-medium text-accent transition-colors hover:text-accent-hover"
+            >
+              {project.relatedLink.label}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
         </FadeIn>
       )}
 
