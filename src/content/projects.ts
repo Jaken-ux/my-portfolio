@@ -42,6 +42,7 @@ export type ProjectContent = {
   demoPassword?: string;
   endCta?: { text: string; linkLabel: string; href: string };
   relatedLink?: { label: string; href: string };
+  backLink?: { label: string; href: string };
   heroCaption?: string;
   quickFacts?: { label: string; value: string }[];
   heroImage: string;
@@ -362,6 +363,7 @@ export const projectContent: ProjectContent[] = [
     },
     heroImage: "/images/spelporten-inkop/oversikt.webp",
     heroCaption: "The overview — supplier status, deadlines and what needs attention, on one screen.",
+    backLink: { label: "Back to AI Builds", href: "/ai-builds" },
     galleryImages: [
       { src: "/images/spelporten-inkop/chatt.webp", caption: "The agent answers with tool calls visible, so every number can be traced to its source.", group: 1, width: 1686, height: 1316 },
       { src: "/images/spelporten-inkop/chatt-dark.webp", caption: "Designed for daily use: the app follows the system theme, light or dark.", group: 1, width: 1686, height: 1316 },

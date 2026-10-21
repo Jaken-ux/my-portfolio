@@ -41,7 +41,9 @@ efter principerna (`decisions`). En galleribild kan ha en mobilvariant
 `sm:hidden`. Det används för breda tabeller som är oläsbara nedskalade.
 Mobilvarianten är ett eget beskuret utsnitt, ingen CSS-beskärning.
 Valfria fält på ett case: `heroCaption` (bildtext under hero-bilden) och
-`relatedLink` (textlänk till ett relaterat case, före slut-CTA:n).
+`relatedLink` (textlänk till ett relaterat case, före slut-CTA:n) och
+`backLink` (text och mål för båda tillbaka-länkarna; standard är "Back
+to projects" till `/#work`, Spelporten Inköp går till `/ai-builds`).
 Outcome/Learnings-sektionen renderas om `learnings` eller
 `learningPoints` finns; inledningstexten bara om `learnings` är satt.
 

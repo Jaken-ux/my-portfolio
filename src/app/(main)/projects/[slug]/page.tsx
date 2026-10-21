@@ -93,16 +93,17 @@ export default async function ProjectPage({
   const galleryGroup = (g: number) =>
     project.galleryImages.filter((img) => img.group === g);
   const ungrouped = project.galleryImages.filter((img) => img.group == null);
+  const backLink = project.backLink ?? { label: "Back to projects", href: "/#work" };
 
   return (
     <article className="py-20 sm:py-28">
       {/* Back link */}
       <Link
-        href="/#work"
+        href={backLink.href}
         className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-all duration-200 hover:gap-2.5 hover:text-foreground"
       >
         <span aria-hidden="true">&larr;</span>
-        Back to projects
+        {backLink.label}
       </Link>
 
       {/* Case Header */}
@@ -570,11 +571,11 @@ export default async function ProjectPage({
       <FadeIn>
         <div className="mt-24 border-t border-border pt-10">
           <Link
-            href="/#work"
+            href={backLink.href}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-all duration-200 hover:gap-2.5 hover:text-foreground"
           >
             <span aria-hidden="true">&larr;</span>
-            Back to projects
+            {backLink.label}
           </Link>
         </div>
       </FadeIn>
