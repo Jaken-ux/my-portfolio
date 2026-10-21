@@ -35,7 +35,7 @@ const methodPoints = [
 
 const builds: Build[] = [
   {
-    name: "Spelporten Inköp — AI purchasing agent",
+    name: "Spelporten Inköp — AI purchasing tool",
     description:
       "An AI agent and decision dashboard for my board game store. It reads three distributor catalogs and three competitors every week, prices every game with real unit costs, and writes a weekly buying brief. Code does the maths; the agent does the judgment.",
     tags: ["AI Agent", "Decision Support", "E-commerce"],

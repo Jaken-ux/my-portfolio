@@ -263,7 +263,7 @@ export const projectContent: ProjectContent[] = [
   },
   {
     slug: "spelporten-inkop",
-    title: "Spelporten Inköp — AI Purchasing Agent",
+    title: "Spelporten Inköp — AI Purchasing Tool",
     intro:
       "An AI agent and decision dashboard I built for my own board game store, to decide what to buy, where to buy it and what to charge.",
     role: "Founder — product design and development",
